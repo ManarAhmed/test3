@@ -62,8 +62,8 @@ require_once '../layout/header.php';
         </tr>
     </table>
 </div>
-<a href="http://localhost/EwestStore/store/edit.php?id=<?php echo $value['id'];?>" class="btn btn-warning" name="update" style="margin:5px;">Edit</a>
-<input type="button" id="<?php echo $value['id'];?>" class="btn btn-danger delete_stored" name="delete_stored" value="Delete" style="margin:5px;">
+<a href="http://localhost/EwestStore/store/edit.php?id=<?php echo $data[0]['id'];?>" class="btn btn-warning" name="update" style="margin:5px;">Edit</a>
+<input type="button" id="<?php echo $data[0]['id'];?>" class="btn btn-danger delete_stored" name="delete_stored" value="Delete" style="margin:5px;">
 <a href="http://localhost/EwestStore/store.php" class="btn btn-info">Back to store</a>
 
 <!-- Dialog -->

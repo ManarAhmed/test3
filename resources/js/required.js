@@ -120,9 +120,30 @@ $(function () {
         $('#due-date').val('');
     };
     
-    
-    $('#add_manu').on('click', function (event) {
+    $('#add_manu_required').on('click', function (event) {
         event.preventDefault();
+        dialogDistributer('new');
+
+    });
+    
+   $('#add_dist_required').on('click', function (event) {
+        event.preventDefault();
+        dialogDistributer('new');
+
+    });
+
+    $('#add_manu_edit_required').on('click', function (event) {
+        event.preventDefault();
+        dialogManufacturer('edit');
+
+    });
+
+    $('#add_dist_edit_required').on('click', function (event) {
+        event.preventDefault();
+        dialogDistributer('edit');
+
+    });
+    var dialogManufacturer = function (action) {
         $("#dialog_add_manu").dialog({
             resizable: false,
             height: "auto",
@@ -143,7 +164,13 @@ $(function () {
                         data: data,
                         success: function (data) {
                             console.log(data);
-                            window.location.href = "http://localhost/EwestStore/store/new.php";
+                            if (action === 'new') {
+                                window.location.href = "http://localhost/EwestStore/required/new.php";
+                            }
+                            else if (action === 'edit') {
+                                var id = $('#required_id').val();
+                                window.location.href = "http://localhost/EwestStore/required/edit.php?id=" + id;
+                            }
                         },
                         error: function (data) {
                             console.log(data);
@@ -157,10 +184,8 @@ $(function () {
                 }
             }
         });
-    });
-    
-    $('#add_dist').on('click', function (event) {
-        event.preventDefault();
+    };
+    var dialogDistributer = function (action) {
         $("#dialog_add_dist").dialog({
             resizable: false,
             height: "auto",
@@ -181,7 +206,13 @@ $(function () {
                         data: data,
                         success: function (data) {
                             console.log(data);
-                            window.location.href = "http://localhost/EwestStore/store/new.php";
+                            if (action === 'new') {
+                                window.location.href = "http://localhost/EwestStore/required/new.php";
+                            }
+                            else if (action === 'edit') {
+                                var id = $('#required_id').val();
+                                window.location.href = "http://localhost/EwestStore/required/edit.php?id=" + id;
+                            }
                         },
                         error: function (data) {
                             console.log(data);
@@ -195,6 +226,8 @@ $(function () {
                 }
             }
         });
-    });
+    }
+    
+  
 });
                 

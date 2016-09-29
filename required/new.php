@@ -46,7 +46,7 @@ require_once '../layout/header.php';
         </div>
          <div style="margin-top: -15px;">
             <div class="col-sm-1" style="padding: 0px;">
-                <button type="button" class="btn btn-success" id="add_manu">
+                <button type="button" class="btn btn-success" id="add_manu_required">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
             </div>
@@ -63,7 +63,7 @@ require_once '../layout/header.php';
                     </select> 
                 </div>
                 <div class="col-sm-1" style="padding: 0px;">
-                    <button type="button" class="btn btn-success" id="add_dist">
+                    <button type="button" class="btn btn-success" id="add_dist_required">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </div>
@@ -102,7 +102,7 @@ require_once '../layout/header.php';
         <div class="form-group" style="margin-top:15px;">
             <label class="control-label col-sm-2" for="resp-user">Responsible User</label>
             <div class="col-sm-3">
-                <input type="text" id="resp-user" name="resp_user" class="form-control">
+                <input type="text" id="resp-user" name="resp_user" value="<?php echo $_SESSION['username'];?>" class="form-control" disabled>
             </div>
         </div>
         <div class="form-group">

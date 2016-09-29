@@ -56,21 +56,33 @@ require_once '../layout/header.php';
                 </select> 
             </div>
         </div>
-        <div class="form-group" style="margin-top: -10px;">
-            <label class="control-label col-sm-offset-1 col-sm-2" for="dist">Distributer</label>
-            <div class="col-sm-3">
-                <select id="dist" name="distribter" class="form-control">
-                    <option value="" selected disabled>-- select distributer --</option>
-                    <?php
-                    foreach ($distributers as $key => $value) {
-                        if ($value['id'] == $data[0]['dist_id']) {
-                            echo "<option value='" . $value['id'] . "' selected>" . $value['name'] . "</option>";
-                        } else {
-                            echo "<option value='" . $value['id'] . "'>" . $value['name'] . "</option>";
+        <div style="margin-top: -15px;">
+            <div class="col-sm-1" style="padding: 0px;">
+                <button type="button" class="btn btn-success" id="add_manu_edit">
+                    <span class="glyphicon glyphicon-plus"></span>
+                </button>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="dist">Distributer</label>
+                <div class="col-sm-3" >
+                    <select id="dist" name="distribter" class="form-control">
+                        <option value="" selected disabled>-- select distributer --</option>
+                        <?php
+                        foreach ($distributers as $key => $value) {
+                            if ($value['id'] == $data[0]['dist_id']) {
+                                echo "<option value='" . $value['id'] . "' selected>" . $value['name'] . "</option>";
+                            } else {
+                                echo "<option value='" . $value['id'] . "'>" . $value['name'] . "</option>";
+                            }
                         }
-                    }
-                    ?>
-                </select> 
+                        ?>
+                    </select> 
+                </div>
+                <div class="col-sm-1" style="padding: 0px;">
+                    <button type="button" class="btn btn-success" id="add_dist_edit">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
