@@ -43,7 +43,13 @@ require_once './layout/header.php';
         <tbody>
             <?php
             foreach ($data as $key => $value) {
-                echo'<tr>';
+                $date = strtotime($value['due_date'],time());
+                $now = time();
+                if($now > $date){
+                    echo'<tr class="danger">';
+                }  else {
+                     echo'<tr>';
+                }
                 echo '<td class="text-center" >' . $value['id'] . '</td>';
                 echo '<td class="text-center" >' . $value['manu_part_num'] . '</td>';
                 echo '<td class="text-center" >' . $value['package'] . '</td>';
