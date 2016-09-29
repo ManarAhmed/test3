@@ -82,9 +82,4 @@ require_once './layout/header.php';
         </fieldset>
     </form>
 </div>
-<!--<script>
-    function gthval(){
-        alert(document.getElementById('pulled_quantity').value);
-    }
-</script>-->
 <?php require_once './layout/footer.php'; ?>

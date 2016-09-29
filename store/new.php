@@ -45,7 +45,7 @@ require_once '../layout/header.php';
         </div>
         <div style="margin-top: -15px;">
             <div class="col-sm-1" style="padding: 0px;">
-                <button type="button" class="btn btn-success" id="add_manu">
+                <button type="button" class="btn btn-plus" id="add_manu">
                     <span class="glyphicon glyphicon-plus"></span>
                 </button>
             </div>
@@ -62,7 +62,7 @@ require_once '../layout/header.php';
                     </select> 
                 </div>
                 <div class="col-sm-1" style="padding: 0px;">
-                    <button type="button" class="btn btn-success" id="add_dist">
+                    <button type="button" class="btn btn-plus" id="add_dist">
                         <span class="glyphicon glyphicon-plus"></span>
                     </button>
                 </div>
@@ -150,5 +150,19 @@ require_once '../layout/header.php';
         </div>
     </form>
 </div>
-
+<style>
+    .btn-plus{
+        background-color: white;
+    }
+    .btn-plus:active{
+        background-color: white;
+          box-shadow: none;
+    }
+    .glyphicon-plus{
+        color: green;
+    }
+    .col-sm-3{
+        padding: 0px;
+    }
+</style>
 <?php require_once '../layout/footer.php'; ?>

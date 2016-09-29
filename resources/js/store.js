@@ -73,16 +73,28 @@ $(function () {
     var checkStoredValid = function () {
         var valid = 1;
         $("input").each(function () {
-            if ($(this).val() == '') {
-                $(this).parent('div').parent('div').addClass('has-error has-feedback');
-                $(this).after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>')
+            var idAttr = $(this).attr('id');
+            if (idAttr != 'manufacturer' && idAttr != 'manu_website' && idAttr != 'distributer' && idAttr != 'dist_website' ) {
+                if ($(this).val() == '') {
+                    $(this).parent('div').parent('div').addClass('has-error has-feedback');
+                    $(this).after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>')
+                    valid = 0;
+                } else {
+                    $(this).next('.form-control-feedback').hide();
+                    $(this).parent('div').parent('div').removeClass('has-error has-feedback');
+                    $(this).parent('div').children('span').remove();
+                }
+            }
+        });
+        $("select").each(function () {
+            if (!$(this).val()) {
+                $(this).parent('div').parent('div').addClass('has-error');
                 valid = 0;
             } else {
-                $(this).next('.form-control-feedback').hide();
-                $(this).parent('div').parent('div').removeClass('has-error has-feedback');
+                $(this).parent('div').parent('div').removeClass('has-error');
                 $(this).parent('div').children('span').remove();
             }
-        })
+        });
         return valid;
     };
 //function to clear form data

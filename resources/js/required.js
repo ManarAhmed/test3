@@ -1,11 +1,11 @@
 $(function () {
     var date = new Date($('#due-date').val());
     $("#due-date").datepicker();
-    
+
     if ($('#due-date').val() && $('#due-date').val() != "0000-00-00") {
         $("#due-date").datepicker("setDate", date);
-    } 
-    
+    }
+
     $("#due-date").datepicker("option", "dateFormat", "yy-mm-dd");
 
 
@@ -25,7 +25,7 @@ $(function () {
         mydata = {
             manufacturer: manufacturer,
             distribter: distribter,
-            manu_num: manu_num, 
+            manu_num: manu_num,
             dist_num: dist_num,
             package: package,
             req_quantity: req_quantity,
@@ -42,18 +42,18 @@ $(function () {
             storeData();
         }
     });
-    
+
 // check validation then EDIT required component data
     $('#update').on('click', function () {
         var id = $('#required_id').val();
         if (checkValid()) {
             updateData(id);
         }
-    });   
+    });
 //INSERT new required component data function
     var storeData = function () {
         getData();
-        mydata['store']='ok';
+        mydata['store'] = 'ok';
         var setting = {
             url: 'http://localhost/EwestStore/db/requiredTable.php',
             type: 'post',
@@ -72,7 +72,7 @@ $(function () {
 //EDIT OR DELETE required component data function
     var updateData = function (id) {
         getData();
-        mydata['update']='ok';
+        mydata['update'] = 'ok';
         var setting = {
             url: 'http://localhost/EwestStore/db/requiredTable.php?id=' + id,
             type: 'get',
@@ -92,20 +92,32 @@ $(function () {
     var checkValid = function () {
         var valid = 1;
         $("input").each(function () {
-            if ($(this).val() == '') {
-                $(this).parent('div').parent('div').addClass('has-error has-feedback');
-                $(this).after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>')
+            var idAttr = $(this).attr('id');
+            if (idAttr != 'manufacturer' && idAttr != 'manu_website' && idAttr != 'distributer' && idAttr != 'dist_website') {
+                if ($(this).val() == '') {
+                    $(this).parent('div').parent('div').addClass('has-error has-feedback');
+                    $(this).after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>')
+                    valid = 0;
+                } else {
+                    $(this).next('.form-control-feedback').hide();
+                    $(this).parent('div').parent('div').removeClass('has-error has-feedback');
+                    $(this).parent('div').children('span').remove();
+
+                }
+            }
+        });
+        $("select").each(function () {
+            if (!$(this).val()) {
+                $(this).parent('div').parent('div').addClass('has-error');
                 valid = 0;
             } else {
-                $(this).next('.form-control-feedback').hide();
-                $(this).parent('div').parent('div').removeClass('has-error has-feedback');
+                $(this).parent('div').parent('div').removeClass('has-error');
                 $(this).parent('div').children('span').remove();
-
             }
-        })
+        });
         return valid;
     };
-    
+
 //function to clear form data
     var emptyFields = function () {
         $('#manu').val('');
@@ -119,14 +131,14 @@ $(function () {
         $('#priority').val('');
         $('#due-date').val('');
     };
-    
+
     $('#add_manu_required').on('click', function (event) {
         event.preventDefault();
         dialogDistributer('new');
 
     });
-    
-   $('#add_dist_required').on('click', function (event) {
+
+    $('#add_dist_required').on('click', function (event) {
         event.preventDefault();
         dialogDistributer('new');
 
@@ -227,7 +239,7 @@ $(function () {
             }
         });
     }
-    
-  
+
+
 });
                 
