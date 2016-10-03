@@ -35,6 +35,7 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse right" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://localhost/EwestStore/requests.php">Requests</a></li>
                         <li class="active"><a href="http://localhost/EwestStore/store.php">Store <span class="sr-only">(current)</span></a></li>
                         <li><a href="http://localhost/EwestStore/required.php">Required</a></li>
 

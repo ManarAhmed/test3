@@ -29,18 +29,27 @@ if (isset($_REQUEST['store']) || isset($_REQUEST['update'])) {
 } elseif (isset($_REQUEST["delete"])) {
     $id = mysqli_real_escape_string($link, $_REQUEST['id']);
     $query = "DELETE FROM required WHERE id = " . $id;
+} elseif (isset($_REQUEST["find"])) {
+    $query = "select id from required where manu_part_num = '" . $manu_part_num . "'";
 } else {
     print_r('proplem');
     exit;
 }
+$result = mysqli_query($link, $query);
+$d = [];
+while ($row = mysqli_fetch_assoc($result)) {
+    $d[] = $row;
+}
 
-if (mysqli_query($link, $query)) {
+if ($result) {
     if (isset($_REQUEST['store'])) {
         echo "New record created successfully";
     } elseif (isset($_REQUEST['update'])) {
         echo "Record updated successfully";
     } elseif (isset($_REQUEST['delete'])) {
         echo "Record deleted successfully";
+    } elseif (isset($_REQUEST['find'])) {
+        echo $d[0]['id'];
     }
 } else {
     echo "Error: " . $query . "<br>" . mysqli_error($link);

@@ -74,7 +74,7 @@ $(function () {
         var valid = 1;
         $("input").each(function () {
             var idAttr = $(this).attr('id');
-            if (idAttr != 'manufacturer' && idAttr != 'manu_website' && idAttr != 'distributer' && idAttr != 'dist_website' ) {
+            if (idAttr != 'manufacturer' && idAttr != 'manu_website' && idAttr != 'distributer' && idAttr != 'dist_website') {
                 if ($(this).val() == '') {
                     $(this).parent('div').parent('div').addClass('has-error has-feedback');
                     $(this).after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>')
@@ -264,7 +264,9 @@ $(function () {
             modal: true,
             buttons: {
                 "Add": function () {
-
+                    var manu_part_num = $("#td_quantity_" + id).parent('tr').find('#manu_part_num').html();
+//                    chechRequired(manu_part_num);
+//                    alert(required_id);
                     var added_quantity = Number($('#added_quantity').val());
                     var before_quantity = Number($("#td_quantity_" + id).html());
                     var total_quantity = before_quantity + added_quantity;
@@ -302,7 +304,7 @@ $(function () {
         };
         $.ajax(setting);
     };
-    // DELETE data function
+    // Add data to log table
     var insertLog = function (log_data) {
         log_data['add_log'] = 'ok';
         var setting = {
@@ -314,9 +316,27 @@ $(function () {
                 window.location.href = "http://localhost/EwestStore/store.php";
             },
             error: function (data) {
-                console.log('server error');
+//                console.log('server error');
             }
         };
         $.ajax(setting);
     };
+
+    //check if added component found in required table and return the required quantity
+//    var chechRequired = function (manu_part_num) {
+//        var id;
+//        var setting = {
+//            url: 'http://localhost/EwestStore/db/requiredTable.php',
+//            type: 'post',
+//            data: {manu_num: manu_part_num, find: 'ok'},
+//            success: function (data) {
+//                id = data;
+//            },
+//            error: function (data) {
+//                console.log('server error');
+//            }
+//        };
+//        $.ajax(setting);
+//        return id;
+//    };
 });

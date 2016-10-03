@@ -45,7 +45,7 @@ require_once './layout/header.php';
                 }
                 
                 echo '<td class="text-center" >' . $value['id'] . '</td>';
-                echo '<td class="text-center" >' . $value['manu_part_num'] . '</td>';
+                echo '<td class="text-center" id="manu_part_num" >' . $value['manu_part_num'] . '</td>';
                 echo '<td class="text-center" >' . $value['package'] . '</td>';
                 echo '<td class="text-center" id="td_quantity_' . $value['id'] . '">' . $value['quantity'] . '</td>';
                 echo '<td class="text-center" >' . $value['drawer_num'] . '</td>';

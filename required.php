@@ -11,6 +11,9 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
     }
+//    echo '<pre>';print_r($data);
+//        echo '</pre>';
+//        exit;
     mysqli_close($link);
 } else {
     header('Location: http://localhost/EwestStore/user/login.php');
@@ -43,12 +46,12 @@ require_once './layout/header.php';
         <tbody>
             <?php
             foreach ($data as $key => $value) {
-                $date = strtotime($value['due_date'],time());
+                $date = strtotime($value['due_date'], time());
                 $now = time();
-                if($now > $date){
+                if ($now > $date) {
                     echo'<tr class="danger">';
-                }  else {
-                     echo'<tr>';
+                } else {
+                    echo'<tr>';
                 }
                 echo '<td class="text-center" >' . $value['id'] . '</td>';
                 echo '<td class="text-center" >' . $value['manu_part_num'] . '</td>';
@@ -72,7 +75,11 @@ require_once './layout/header.php';
 
 <!-- Dialog -->
 <div id="dialog-confirm" title="Delete required component?" style="display: none">
-    <p style="font-size: 16px; "><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>These item will be permanently deleted and cannot be recovered.<br><h4>Are you sure?</h4></p>
+    <p style="font-size: 16px; ">
+        <span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>
+        These item will be permanently deleted and cannot be recovered.
+    </p><br><h4>Are you sure?</h4>
+
 </div>
 
 <?php require_once './layout/footer.php'; ?>
