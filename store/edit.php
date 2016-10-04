@@ -11,8 +11,10 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
 
     $query1 = "select id,name from manufacturer";
     $query2 = "select id,name from distributer";
+    $query3 = "select id,location from company_branch";
     $result1 = mysqli_query($link, $query1);
     $result2 = mysqli_query($link, $query2);
+    $result3 = mysqli_query($link, $query3);
     $manufacturers = [];
     while ($row1 = mysqli_fetch_assoc($result1)) {
         $manufacturers[] = $row1;
@@ -20,6 +22,10 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
     $distributers = [];
     while ($row2 = mysqli_fetch_assoc($result2)) {
         $distributers[] = $row2;
+    }
+    $branches = [];
+    while ($row3 = mysqli_fetch_assoc($result3)) {
+        $branches[] = $row3;
     }
 
     mysqli_close($link);
@@ -122,12 +128,37 @@ if (!empty($data)) {
                     <input type="number" min="1" step="1" id="drawer_num" name="drawer_num" class="form-control" value="<?php echo $data[0]['drawer_num'] ?>">
                 </div>
             </div>
+            <div class="form-group">
+                <label class="control-label col-sm-offset-1 col-sm-2" for="threshold">Threshold</label>
+                <div class="col-sm-3">
+                    <input type="number" min="0" step="1" id="threshold" name="threshold" class="form-control" value="<?php echo $data[0]['threshold'] ?>">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group" style="margin-top: 15px;">
+                <label class="control-label col-sm-2" for="branch">Company Branch</label>
+                <div class="col-sm-3" >
+                    <select id="branch" name="branch" class="form-control">
+                        <option value="" selected disabled>-- select branch --</option>
+                         <?php
+                            foreach ($branches as $key => $value) {
+                                if ($value['id'] == $data[0]['branch_id']) {
+                                    echo "<option value='" . $value['id'] . "' selected>" . $value['location'] . "</option>";
+                                } else {
+                                    echo "<option value='" . $value['id'] . "'>" . $value['location'] . "</option>";
+                                }
+                            }
+                            ?>
+                    </select> 
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="form-group">        
                 <div class="col-sm-offset-2 col-sm-3" style="margin-top: 15px;">
                     <input type="button" value="Update" id="update_stored" class="btn btn-success" name="update_stored">
-                    <a href="http://localhost/EwestStore/store.php" class="btn btn-info">Back</a>
+                    <a href="http://localhost/EwestStore/store/show.php?id=<?php echo $data[0]['id'] ?>" class="btn btn-info">Back</a>
                 </div>
             </div>
         </div>

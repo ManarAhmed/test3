@@ -13,7 +13,7 @@ $(function () {
     var mydata;
     var getData = function () {
         var manufacturer = $('#manu').val();
-        var distribter = $('#dist').val();
+        var distributer = $('#dist').val();
         var manu_num = $('#manu-num').val();
         var dist_num = $('#dist-num').val();
         var package = $('#package').val();
@@ -24,7 +24,7 @@ $(function () {
         var due_date = $('#due-date').val();
         mydata = {
             manufacturer: manufacturer,
-            distribter: distribter,
+            distributer: distributer,
             manu_num: manu_num,
             dist_num: dist_num,
             package: package,

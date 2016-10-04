@@ -9,6 +9,8 @@ $(function () {
         var package = $('#package').val();
         var quantity = $('#quantity').val();
         var drawer_num = $('#drawer_num').val();
+        var threshold = $('#threshold').val();
+        var branch_id = $('#branch').val();
         mystoreddata = {
             manufacturer: manufacturer,
             distribter: distribter,
@@ -17,6 +19,8 @@ $(function () {
             package: package,
             quantity: quantity,
             drawer_num: drawer_num,
+            threshold: threshold,
+            branch_id: branch_id
         };
     }
 
@@ -106,8 +110,10 @@ $(function () {
         $('#package').val('');
         $('#quantity').val('');
         $('#drawer_num').val('');
+        $('#threshold').val('');
+        $('#branch_id').val('');
     };
-
+    /******************************************************************************/
     $('#add_manu').on('click', function (event) {
         event.preventDefault();
         dialogManufacturer('new');
@@ -131,6 +137,7 @@ $(function () {
         dialogDistributer('edit');
 
     });
+
     var dialogManufacturer = function (action) {
         $("#dialog_add_manu").dialog({
             resizable: false,
@@ -216,7 +223,8 @@ $(function () {
         });
     }
 
-    //Update quantity in store table when pull
+    /******************************************************************************/
+//Update quantity in store table when pull
     $('.btn_pull_component').on('click', function (event) {
         event.preventDefault();
         var id = $(this).attr('id');
@@ -253,7 +261,7 @@ $(function () {
         });
     });
 
-    //Update quantity in store table when added
+//Update quantity in store table when added
     $('.btn_add_component').on('click', function (event) {
         event.preventDefault();
         var id = $(this).attr('id');
@@ -265,12 +273,25 @@ $(function () {
             buttons: {
                 "Add": function () {
                     var manu_part_num = $("#td_quantity_" + id).parent('tr').find('#manu_part_num').html();
-//                    chechRequired(manu_part_num);
-//                    alert(required_id);
                     var added_quantity = Number($('#added_quantity').val());
                     var before_quantity = Number($("#td_quantity_" + id).html());
                     var total_quantity = before_quantity + added_quantity;
                     var today_date = $.datepicker.formatDate('yy-mm-dd', new Date());
+                    //check if these added component found in required
+                    //stop code until the ajax response
+                    $.when(chechRequired(manu_part_num)).done(function (data) {
+                        if (data) {
+                            var data_array = JSON.parse(data)[0];
+                            if (added_quantity >= data_array['required_quantity'])
+                            {
+                                deleteRequired(data_array['id'])
+                            } else {
+                                var new_required_quantity = Number(data_array['required_quantity']) - added_quantity
+                                updateRequired(data_array['id'], new_required_quantity);
+                            }
+                        }
+                    });
+                    //update the component quantity in the store
                     var log_data = {
                         component_id: id,
                         added_quantity: added_quantity,
@@ -288,7 +309,8 @@ $(function () {
             }
         });
     });
-// DELETE data function
+
+// UPDATE component quantity function
     var updateComponent = function (new_quantity, id) {
         var setting = {
             url: 'http://localhost/EwestStore/db/storeTable.php?id=' + id,
@@ -304,7 +326,8 @@ $(function () {
         };
         $.ajax(setting);
     };
-    // Add data to log table
+
+// ADD data to log table
     var insertLog = function (log_data) {
         log_data['add_log'] = 'ok';
         var setting = {
@@ -316,27 +339,110 @@ $(function () {
                 window.location.href = "http://localhost/EwestStore/store.php";
             },
             error: function (data) {
-//                console.log('server error');
+                console.log("Error in insertLog: " + data);
             }
         };
         $.ajax(setting);
     };
 
-    //check if added component found in required table and return the required quantity
-//    var chechRequired = function (manu_part_num) {
-//        var id;
-//        var setting = {
-//            url: 'http://localhost/EwestStore/db/requiredTable.php',
-//            type: 'post',
-//            data: {manu_num: manu_part_num, find: 'ok'},
-//            success: function (data) {
-//                id = data;
-//            },
-//            error: function (data) {
-//                console.log('server error');
-//            }
-//        };
-//        $.ajax(setting);
-//        return id;
-//    };
+//check if added component found in required table and return the required quantity
+    var chechRequired = function (manu_part_num) {
+        var setting = {
+            url: 'http://localhost/EwestStore/db/requiredTable.php',
+            type: 'post',
+            data: {manu_num: manu_part_num, find: 'ok'},
+        };
+        return $.ajax(setting);
+    };
+//DELETE required component if added quantity >= required quantity
+    var deleteRequired = function (id) {
+        var setting = {
+            url: 'http://localhost/EwestStore/db/requiredTable.php?id=' + id,
+            type: 'get',
+            data: {delete: 'ok'},
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log('server error');
+            }
+        };
+        $.ajax(setting);
+    };
+//UPDATE required component quantity if added quantity < required quantity
+    var updateRequired = function (id, new_quantity) {
+        var setting = {
+            url: 'http://localhost/EwestStore/db/requiredTable.php?id=' + id,
+            type: 'get',
+            data: {new_quantity: new_quantity, update_req_quantity: 'ok'},
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log('server error');
+            }
+        };
+        $.ajax(setting);
+    };
+
+    /******************************************************************************/
+//Update quantity in store table when pull
+    $('.btn_require').on('click', function (event) {
+        event.preventDefault();
+        var id = $(this).attr('id');
+        $("#dialog-require-component").dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Require": function () {
+                    var require_quantity = Number($('#require_quantity').val());
+                    var manufacturer = $('.manufacturer').find('td').attr('id');
+                    var distributer = $('.distributer').find('td').attr('id');
+                    var manu_part_num = $('.manu_part_num').find('td').html();
+                    var dist_part_num = $('.dist_part_num').find('td').html();
+                    var package = $('.package').find('td').html();
+                    var username = $('#username').val();
+                    var priority = $('#priority').val();
+//                    alert("#td_" + id);
+                    var require_data = {
+                        manufacturer: manufacturer,
+                        distributer: distributer,
+                        manu_num: manu_part_num,
+                        dist_num: dist_part_num,
+                        package: package,
+                        req_quantity: require_quantity,
+                        resp_user: username,
+                        project: 'NULL',
+                        priority: priority,
+                        due_date: '0000-00-00',
+                    };
+                    addRequire(require_data);
+
+                    $(this).dialog("close");
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+    
+//ADD to required components   
+    var addRequire = function (require_data){
+        require_data['store'] = 'ok';
+        var setting = {
+            url: 'http://localhost/EwestStore/db/requiredTable.php',
+            type: 'post',
+            data: require_data,
+            success: function (data) {
+                console.log(data);
+            },
+            error: function (data) {
+                console.log('server error');
+            }
+        };
+        $.ajax(setting);
+    };
 });

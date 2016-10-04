@@ -5,7 +5,7 @@ require_once './connection.php';
 //print_r($_REQUEST);exit;
 if (isset($_REQUEST['store']) || isset($_REQUEST['update'])) {
     $manufacturer = mysqli_real_escape_string($link, $_REQUEST['manufacturer']);
-    $distributer = mysqli_real_escape_string($link, $_REQUEST['distribter']);
+    $distributer = mysqli_real_escape_string($link, $_REQUEST['distributer']);
     $manu_part_num = mysqli_real_escape_string($link, $_REQUEST['manu_num']);
     $dist_part_num = mysqli_real_escape_string($link, $_REQUEST['dist_num']);
     $package = mysqli_real_escape_string($link, $_REQUEST['package']);
@@ -30,18 +30,18 @@ if (isset($_REQUEST['store']) || isset($_REQUEST['update'])) {
     $id = mysqli_real_escape_string($link, $_REQUEST['id']);
     $query = "DELETE FROM required WHERE id = " . $id;
 } elseif (isset($_REQUEST["find"])) {
-    $query = "select id from required where manu_part_num = '" . $manu_part_num . "'";
+    $manu_part_num = mysqli_real_escape_string($link, $_REQUEST['manu_num']);
+    $query = "SELECT * FROM required WHERE manu_part_num = '$manu_part_num'";
+} elseif (isset($_REQUEST["update_req_quantity"])) {
+    $id = mysqli_real_escape_string($link, $_REQUEST['id']);
+    $new_quantity = mysqli_real_escape_string($link, $_REQUEST['new_quantity']);
+    $query = "UPDATE required SET required_quantity = $new_quantity WHERE id = $id";
 } else {
     print_r('proplem');
     exit;
 }
-$result = mysqli_query($link, $query);
-$d = [];
-while ($row = mysqli_fetch_assoc($result)) {
-    $d[] = $row;
-}
 
-if ($result) {
+if (mysqli_query($link, $query)) {
     if (isset($_REQUEST['store'])) {
         echo "New record created successfully";
     } elseif (isset($_REQUEST['update'])) {
@@ -49,7 +49,14 @@ if ($result) {
     } elseif (isset($_REQUEST['delete'])) {
         echo "Record deleted successfully";
     } elseif (isset($_REQUEST['find'])) {
-        echo $d[0]['id'];
+        $result = mysqli_query($link, $query);
+        $d = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $d[] = $row;
+        }
+        if (!empty($d)) {
+            echo json_encode($d);
+        }
     }
 } else {
     echo "Error: " . $query . "<br>" . mysqli_error($link);

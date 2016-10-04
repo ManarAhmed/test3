@@ -100,4 +100,3 @@ require_once './layout/header.php';
 </div>
 
 <?php require_once './layout/footer.php'; ?>
-

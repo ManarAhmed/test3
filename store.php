@@ -22,34 +22,33 @@ require_once './layout/header.php';
     <div class="col-sm-offset-4 col-sm-4 text-center" style="font-size: 22px; font-weight: bold; color: #d9534f;">Store</div>
 </div>
 <div style="height: 30px;"></div>
+
 <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
         <thead>
-            <tr>
+            <tr style="background-color: #ff7f00; color: #FFFFFF;">
                 <th class="text-center">ID</th>
                 <th class="text-center">Manufacturer Part-num</th>
                 <th class="text-center">Package</th>
                 <th class="text-center">Quantity</th>
                 <th class="text-center">Drawer number</th>
                 <th class="text-center" colspan="5"></th>
-
             </tr>
         </thead>
         <tbody>
             <?php
             foreach ($data as $key => $value) {
-                if($value['quantity'] == 0){
-                    echo'<tr class="danger">';
+                if($value['quantity'] < $value['threshold']){
+                    echo'<tr style="background-color: #ffaa99">';
                 }  else {
                      echo'<tr>';
                 }
                 
-                echo '<td class="text-center" >' . $value['id'] . '</td>';
+                echo '<td class="text-center">' . $value['id'] . '</td>';
                 echo '<td class="text-center" id="manu_part_num" >' . $value['manu_part_num'] . '</td>';
                 echo '<td class="text-center" >' . $value['package'] . '</td>';
                 echo '<td class="text-center" id="td_quantity_' . $value['id'] . '">' . $value['quantity'] . '</td>';
                 echo '<td class="text-center" >' . $value['drawer_num'] . '</td>';
-
                 echo '<td class="text-center" nowrap>'
                 . '<a href="http://localhost/EwestStore/store/show.php?id=' . $value['id'] . '"  class="btn btn-info" name="show" style="margin:5px;">show</a>'
                 . '<a href="http://localhost/EwestStore/log_component/show.php?id=' . $value['id'] . '"  class="btn btn-warning" name="log" style="margin:5px;">Log Details</a>'

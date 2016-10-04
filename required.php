@@ -29,9 +29,9 @@ require_once './layout/header.php';
 </div>
 <div style="height: 30px;"></div>
 <div class="table-responsive">
-    <table class="table table-striped">
+    <table class="table table-striped table-bordered">
         <thead>
-            <tr>
+            <tr  style="background-color: #ff7f00; color: #FFFFFF;">
                 <th class="text-center">ID</th>
                 <th class="text-center">Manufacturer Part-num</th>
                 <th class="text-center">Package</th>
