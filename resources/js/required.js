@@ -126,7 +126,6 @@ $(function () {
         $('#dist-num').val('');
         $('#package').val('');
         $('#req-quantity').val('');
-        $('#resp-user').val('');
         $('#project').val('');
         $('#priority').val('');
         $('#due-date').val('');

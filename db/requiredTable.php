@@ -16,22 +16,19 @@ if (isset($_REQUEST['store']) || isset($_REQUEST['update'])) {
     $due_date = mysqli_real_escape_string($link, $_REQUEST['due_date']);
 
     if (isset($_REQUEST['store'])) {
-        $test_query = "SELECT * FROM required WHERE dist_part_num = '$dist_part_num'";
+        //chech if required quantity doesn't required before for same project
+        $test_query = "SELECT * FROM required WHERE dist_part_num = '$dist_part_num'AND project = '$project'";
         $result1 = mysqli_query($link, $test_query);
         $d1 = [];
         while ($row = mysqli_fetch_assoc($result1)) {
             $d1[] = $row;
         }
-        if (empty($d)) {
+        if (empty($d1)) {
             $query = "INSERT INTO required(manufacturer, distributer, manu_part_num, dist_part_num, package, required_quantity, responsable_user, project, priority, due_date)"
                     . " VALUES ('$manufacturer','$distributer','$manu_part_num','$dist_part_num','$package',$required_quantity,'$responsable_user','$project',$priority,'$due_date')";
         } else {
             $new_quantity = $d1[0]['required_quantity'] + $required_quantity;
-            $query = "UPDATE required SET"
-                    . " manufacturer = $manufacturer, distributer = $distributer, manu_part_num = '$manu_part_num',"
-                    . " dist_part_num = '$dist_part_num', package = '$package', required_quantity = $new_quantity,"
-                    . "responsable_user = '$responsable_user', project = '$project', priority = $priority, "
-                    . "due_date = '$due_date' WHERE dist_part_num = '$dist_part_num'";
+            $query = "UPDATE required SET required_quantity = $new_quantity WHERE dist_part_num = '$dist_part_num' AND project = '$project'";
         }
     } elseif (isset($_REQUEST['update'])) {
         $id = mysqli_real_escape_string($link, $_REQUEST['id']);
@@ -57,9 +54,9 @@ if (isset($_REQUEST['store']) || isset($_REQUEST['update'])) {
 }
 
 if (mysqli_query($link, $query)) {
-    if (isset($_REQUEST['store'])) {
+    if (isset($_REQUEST['store'])&&empty($d1)) {
         echo "New record created successfully";
-    } elseif (isset($_REQUEST['update'])) {
+    } elseif (isset($_REQUEST['update']) || !empty ($d1)) {
         echo "Record updated successfully";
     } elseif (isset($_REQUEST['delete'])) {
         echo "Record deleted successfully";
