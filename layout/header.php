@@ -44,11 +44,11 @@
                             <ul class="dropdown-menu">
                                 <li><a href="http://localhost/EwestStore/store/new.php">Add to store</a></li>
                                 <li><a href="http://localhost/EwestStore/required/new.php">Add to required</a></li>
-                                <li><a href="http://localhost/EwestStore/distributer/new.php">Add to distributer</a></li>
+                                <li><a href="http://localhost/EwestStore/distributor/new.php">Add to distributor</a></li>
                                 <li><a href="http://localhost/EwestStore/manufacturer/new.php">Add to manufacturer</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="http://localhost/EwestStore/manufacturer.php">Manufacturer</a></li>
-                                <li><a href="http://localhost/EwestStore/distributer.php">Distributer</a></li>
+                                <li><a href="http://localhost/EwestStore/distributor.php">distributor</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">

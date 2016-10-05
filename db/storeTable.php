@@ -5,7 +5,7 @@ require_once './connection.php';
 //print_r($_REQUEST);exit;
 if (isset($_REQUEST['submit_stored']) || isset($_REQUEST['update_stored'])) {
     $manufacturer = mysqli_real_escape_string($link, $_REQUEST['manufacturer']);
-    $distributer = mysqli_real_escape_string($link, $_REQUEST['distribter']);
+    $distributor = mysqli_real_escape_string($link, $_REQUEST['distribter']);
     $manu_part_num = mysqli_real_escape_string($link, $_REQUEST['manu_num']);
     $dist_part_num = mysqli_real_escape_string($link, $_REQUEST['dist_num']);
     $package = mysqli_real_escape_string($link, $_REQUEST['package']);
@@ -23,7 +23,7 @@ if (isset($_REQUEST['submit_stored']) || isset($_REQUEST['update_stored'])) {
         }
         if (empty($d)) {
             $query = "INSERT INTO store(manu_id, dist_id, manu_part_num, dist_part_num, package, quantity, drawer_num, threshold, branch_id)"
-                    . " VALUES ('$manufacturer','$distributer','$manu_part_num','$dist_part_num','$package',$quantity,$drawer_num, $threshold,$branch_id)";
+                    . " VALUES ('$manufacturer','$distributor','$manu_part_num','$dist_part_num','$package',$quantity,$drawer_num, $threshold,$branch_id)";
         } else {
             $new_quantity = $d[0]['quantity'] + $quantity;
             $query = "UPDATE store SET quantity = $new_quantity, drawer_num = $drawer_num,"
@@ -33,7 +33,7 @@ if (isset($_REQUEST['submit_stored']) || isset($_REQUEST['update_stored'])) {
     } elseif (isset($_REQUEST['update_stored'])) {
         $id = mysqli_real_escape_string($link, $_REQUEST['id']);
         $query = "UPDATE store SET"
-                . " manu_id = $manufacturer, dist_id = $distributer, manu_part_num = '$manu_part_num',"
+                . " manu_id = $manufacturer, dist_id = $distributor, manu_part_num = '$manu_part_num',"
                 . " dist_part_num = '$dist_part_num', package = '$package', quantity = $quantity,"
                 . " drawer_num = $drawer_num, threshold = $threshold, branch_id = $branch_id"
                 . " WHERE id = $id";

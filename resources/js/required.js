@@ -13,7 +13,7 @@ $(function () {
     var mydata;
     var getData = function () {
         var manufacturer = $('#manu').val();
-        var distributer = $('#dist').val();
+        var distributor = $('#dist').val();
         var manu_num = $('#manu-num').val();
         var dist_num = $('#dist-num').val();
         var package = $('#package').val();
@@ -24,7 +24,7 @@ $(function () {
         var due_date = $('#due-date').val();
         mydata = {
             manufacturer: manufacturer,
-            distributer: distributer,
+            distributor: distributor,
             manu_num: manu_num,
             dist_num: dist_num,
             package: package,
@@ -93,7 +93,7 @@ $(function () {
         var valid = 1;
         $("input").each(function () {
             var idAttr = $(this).attr('id');
-            if (idAttr != 'manufacturer' && idAttr != 'manu_website' && idAttr != 'distributer' && idAttr != 'dist_website') {
+            if (idAttr != 'manufacturer' && idAttr != 'manu_website' && idAttr != 'distributor' && idAttr != 'dist_website') {
                 if ($(this).val() == '') {
                     $(this).parent('div').parent('div').addClass('has-error has-feedback');
                     $(this).after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>')
@@ -133,13 +133,13 @@ $(function () {
 
     $('#add_manu_required').on('click', function (event) {
         event.preventDefault();
-        dialogDistributer('new');
+        dialogdistributor('new');
 
     });
 
     $('#add_dist_required').on('click', function (event) {
         event.preventDefault();
-        dialogDistributer('new');
+        dialogdistributor('new');
 
     });
 
@@ -151,7 +151,7 @@ $(function () {
 
     $('#add_dist_edit_required').on('click', function (event) {
         event.preventDefault();
-        dialogDistributer('edit');
+        dialogdistributor('edit');
 
     });
     var dialogManufacturer = function (action) {
@@ -196,7 +196,7 @@ $(function () {
             }
         });
     };
-    var dialogDistributer = function (action) {
+    var dialogdistributor = function (action) {
         $("#dialog_add_dist").dialog({
             resizable: false,
             height: "auto",
@@ -204,15 +204,15 @@ $(function () {
             modal: true,
             buttons: {
                 "Add": function () {
-                    var name = $('#distributer').val();
+                    var name = $('#distributor').val();
                     var website = $("#dist_website").val();
                     var data = {
-                        distributer: name,
+                        distributor: name,
                         dist_website: website
                     };
                     data['submit_dist'] = 'ok';
                     var setting = {
-                        url: 'http://localhost/EwestStore/db/distributerTable.php',
+                        url: 'http://localhost/EwestStore/db/distributorTable.php',
                         type: 'post',
                         data: data,
                         success: function (data) {

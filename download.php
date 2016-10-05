@@ -1,10 +1,10 @@
 <?php
 $filename = $_GET['filename'];         //File Name
 require_once './db/connection.php';
-$query = "select r.id,m.name as manufacturer, d.name as distributer, r.manu_part_num, r.dist_part_num,"
+$query = "select r.id,m.name as manufacturer, d.name as distributor, r.manu_part_num, r.dist_part_num,"
         . " r.package, r.required_quantity, r.responsable_user, r.project, r.priority, r.due_date "
-        . "from required r, manufacturer m, distributer d "
-        . "where d.id = r.distributer and m.id = r.manufacturer and d.name = '" . $_GET['filename'] . "'";
+        . "from required r, manufacturer m, distributor d "
+        . "where d.id = r.distributor and m.id = r.manufacturer and d.name = '" . $_GET['filename'] . "'";
 $result = mysqli_query($link, $query);
 $data = [];
 while ($row = mysqli_fetch_assoc($result)) {

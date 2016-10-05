@@ -62,8 +62,8 @@ $(function () {
         });
     });
 
-// DELETE distributer data
-    $('.delete_distributer').on('click', function (event) {
+// DELETE distributor data
+    $('.delete_distributor').on('click', function (event) {
         event.preventDefault();
         var id = $(this).attr('id');
         $("#dialog-confirm").dialog({
@@ -73,7 +73,7 @@ $(function () {
             modal: true,
             buttons: {
                 "Delete": function () {
-                    updateData("distributer", id);
+                    updateData("distributor", id);
                     $(this).dialog("close");
                 },
                 Cancel: function () {

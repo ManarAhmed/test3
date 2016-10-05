@@ -2,9 +2,9 @@
 session_start();
 if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
     require_once '../db/connection.php';
-    $query = 'select r.id,m.name as manufacturer, d.name as distributer, r.manu_part_num, r.dist_part_num,'
+    $query = 'select r.id,m.name as manufacturer, d.name as distributor, r.manu_part_num, r.dist_part_num,'
             . ' r.package, r.required_quantity, r.responsable_user, r.project, r.priority, r.due_date'
-            . ' from required r, manufacturer m, distributer d where d.id = r.distributer and m.id = r.manufacturer and r.id = ' . $_GET["id"];
+            . ' from required r, manufacturer m, distributor d where d.id = r.distributor and m.id = r.manufacturer and r.id = ' . $_GET["id"];
     $result = mysqli_query($link, $query);
     $data = [];
     while ($row = mysqli_fetch_assoc($result)) {
@@ -38,15 +38,15 @@ if (!empty($data)) {
                 <td class="text-left"><?php echo $data[0]['manufacturer'] ?></td>
             </tr>
             <tr>
-                <th class="text-left">Distributer</th>
-                <td class="text-left"><?php echo $data[0]['distributer'] ?></td>
+                <th class="text-left">distributor</th>
+                <td class="text-left"><?php echo $data[0]['distributor'] ?></td>
             </tr>
             <tr>
                 <th class="text-left">Manufacturer Part-num</th>
                 <td class="text-left"><?php echo $data[0]['manu_part_num'] ?></td>
             </tr>
             <tr>
-                <th class="text-left">Distributer Part-num</th>
+                <th class="text-left">distributor Part-num</th>
                 <td class="text-left"><?php echo $data[0]['dist_part_num'] ?></td>
             </tr>
             <tr>

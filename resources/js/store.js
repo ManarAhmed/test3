@@ -78,7 +78,7 @@ $(function () {
         var valid = 1;
         $("input").each(function () {
             var idAttr = $(this).attr('id');
-            if (idAttr != 'manufacturer' && idAttr != 'manu_website' && idAttr != 'distributer' && idAttr != 'dist_website') {
+            if (idAttr != 'manufacturer' && idAttr != 'manu_website' && idAttr != 'distributor' && idAttr != 'dist_website') {
                 if ($(this).val() == '') {
                     $(this).parent('div').parent('div').addClass('has-error has-feedback');
                     $(this).after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>')
@@ -122,7 +122,7 @@ $(function () {
 
     $('#add_dist').on('click', function (event) {
         event.preventDefault();
-        dialogDistributer('new');
+        dialogdistributor('new');
 
     });
 
@@ -134,7 +134,7 @@ $(function () {
 
     $('#add_dist_edit').on('click', function (event) {
         event.preventDefault();
-        dialogDistributer('edit');
+        dialogdistributor('edit');
 
     });
 
@@ -180,7 +180,7 @@ $(function () {
             }
         });
     };
-    var dialogDistributer = function (action) {
+    var dialogdistributor = function (action) {
         $("#dialog_add_dist").dialog({
             resizable: false,
             height: "auto",
@@ -188,15 +188,15 @@ $(function () {
             modal: true,
             buttons: {
                 "Add": function () {
-                    var name = $('#distributer').val();
+                    var name = $('#distributor').val();
                     var website = $("#dist_website").val();
                     var data = {
-                        distributer: name,
+                        distributor: name,
                         dist_website: website
                     };
                     data['submit_dist'] = 'ok';
                     var setting = {
-                        url: 'http://localhost/EwestStore/db/distributerTable.php',
+                        url: 'http://localhost/EwestStore/db/distributorTable.php',
                         type: 'post',
                         data: data,
                         success: function (data) {
@@ -399,7 +399,7 @@ $(function () {
                 "Require": function () {
                     var require_quantity = Number($('#require_quantity').val());
                     var manufacturer = $('.manufacturer').find('td').attr('id');
-                    var distributer = $('.distributer').find('td').attr('id');
+                    var distributor = $('.distributor').find('td').attr('id');
                     var manu_part_num = $('.manu_part_num').find('td').html();
                     var dist_part_num = $('.dist_part_num').find('td').html();
                     var package = $('.package').find('td').html();
@@ -408,7 +408,7 @@ $(function () {
 //                    alert("#td_" + id);
                     var require_data = {
                         manufacturer: manufacturer,
-                        distributer: distributer,
+                        distributor: distributor,
                         manu_num: manu_part_num,
                         dist_num: dist_part_num,
                         package: package,

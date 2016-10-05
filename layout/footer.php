@@ -9,7 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 <!--Application JavaScript--> 
 <script src="<?php echo substr(__DIR__, '-18', '-7') . '/resources/js/deleteData.js' ?>"></script>
-<script src="<?php echo substr(__DIR__, '-18', '-7') . '/resources/js/distributer.js' ?>"></script>
+<script src="<?php echo substr(__DIR__, '-18', '-7') . '/resources/js/distributor.js' ?>"></script>
 <script src="<?php echo substr(__DIR__, '-18', '-7') . '/resources/js/manufacturer.js' ?>"></script>
 <script src="<?php echo substr(__DIR__, '-18', '-7') . '/resources/js/required.js' ?>"></script>
 <script src="<?php echo substr(__DIR__, '-18', '-7') . '/resources/js/store.js' ?>"></script>

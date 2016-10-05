@@ -5,7 +5,7 @@ require_once './connection.php';
 //print_r($_REQUEST);exit;
 if (isset($_REQUEST['store']) || isset($_REQUEST['update'])) {
     $manufacturer = mysqli_real_escape_string($link, $_REQUEST['manufacturer']);
-    $distributer = mysqli_real_escape_string($link, $_REQUEST['distributer']);
+    $distributor = mysqli_real_escape_string($link, $_REQUEST['distributor']);
     $manu_part_num = mysqli_real_escape_string($link, $_REQUEST['manu_num']);
     $dist_part_num = mysqli_real_escape_string($link, $_REQUEST['dist_num']);
     $package = mysqli_real_escape_string($link, $_REQUEST['package']);
@@ -24,8 +24,8 @@ if (isset($_REQUEST['store']) || isset($_REQUEST['update'])) {
             $d1[] = $row;
         }
         if (empty($d1)) {
-            $query = "INSERT INTO required(manufacturer, distributer, manu_part_num, dist_part_num, package, required_quantity, responsable_user, project, priority, due_date)"
-                    . " VALUES ('$manufacturer','$distributer','$manu_part_num','$dist_part_num','$package',$required_quantity,'$responsable_user','$project',$priority,'$due_date')";
+            $query = "INSERT INTO required(manufacturer, distributor, manu_part_num, dist_part_num, package, required_quantity, responsable_user, project, priority, due_date)"
+                    . " VALUES ('$manufacturer','$distributor','$manu_part_num','$dist_part_num','$package',$required_quantity,'$responsable_user','$project',$priority,'$due_date')";
         } else {
             $new_quantity = $d1[0]['required_quantity'] + $required_quantity;
             $query = "UPDATE required SET required_quantity = $new_quantity WHERE dist_part_num = '$dist_part_num' AND project = '$project'";
@@ -33,7 +33,7 @@ if (isset($_REQUEST['store']) || isset($_REQUEST['update'])) {
     } elseif (isset($_REQUEST['update'])) {
         $id = mysqli_real_escape_string($link, $_REQUEST['id']);
         $query = "UPDATE required SET"
-                . " manufacturer = $manufacturer, distributer = $distributer, manu_part_num = '$manu_part_num',"
+                . " manufacturer = $manufacturer, distributor = $distributor, manu_part_num = '$manu_part_num',"
                 . " dist_part_num = '$dist_part_num', package = '$package', required_quantity = $required_quantity,"
                 . "responsable_user = '$responsable_user', project = '$project', priority = $priority, "
                 . "due_date = '$due_date' WHERE id =" . $id;

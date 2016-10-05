@@ -2,21 +2,21 @@
 session_start();
 if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
     require_once './db/connection.php';
-    $query = "select r.id,m.name as manufacturer, d.name as distributer, r.manu_part_num, r.dist_part_num,"
+    $query = "select r.id,m.name as manufacturer, d.name as distributor, r.manu_part_num, r.dist_part_num,"
             . " r.package, r.required_quantity, r.responsable_user, r.project, r.priority, r.due_date "
-            . "from required r, manufacturer m, distributer d "
-            . "where d.id = r.distributer and m.id = r.manufacturer order by d.name";
+            . "from required r, manufacturer m, distributor d "
+            . "where d.id = r.distributor and m.id = r.manufacturer order by d.name";
     $result = mysqli_query($link, $query);
     $data = [];
     while ($row = mysqli_fetch_assoc($result)) {
         $data[] = $row;
     }
-    //gather each distributer request in array element
+    //gather each distributor request in array element
     $flag = 0;
     $flag2 = -1;
     $arr = [];
     for ($i = 0; $i < count($data); $i++) {
-        if (!isset($arr[0][0]) || $arr[$flag][$flag2]['distributer'] === $data[$i]['distributer']) {
+        if (!isset($arr[0][0]) || $arr[$flag][$flag2]['distributor'] === $data[$i]['distributor']) {
             $flag2 ++;
         } else {
             $flag++;
@@ -39,7 +39,7 @@ require_once './layout/header.php';
 </div>
 <div style="height: 30px;"></div>
 <?php foreach ($arr as $key => $val) { ?>
-    <h3 class="text-center" style="font-size: 22px; font-weight: bold; color: #FF0000;"><?php echo 'Distributer ( ' . $val[$key]['distributer'] . ' ) requests'; ?></h3><br>
+    <h3 class="text-center" style="font-size: 22px; font-weight: bold; color: #FF0000;"><?php echo 'distributor ( ' . $val[$key]['distributor'] . ' ) requests'; ?></h3><br>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -84,7 +84,7 @@ require_once './layout/header.php';
             </tbody>
         </table>
     </div>
-        <a href=<?php echo "http://localhost/EwestStore/download.php?filename=".$val[$key]['distributer'];?> class="btn btn-success">download as excel sheet</a>
+        <a href=<?php echo "http://localhost/EwestStore/download.php?filename=".$val[$key]['distributor'];?> class="btn btn-success">download as excel sheet</a>
 
     <hr>
     <br>

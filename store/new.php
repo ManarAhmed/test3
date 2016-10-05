@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
     require_once '../db/connection.php';
     $query1 = "select id,name from manufacturer";
-    $query2 = "select id,name from distributer";
+    $query2 = "select id,name from distributor";
     $query3 = "select id,location from company_branch";
     $result1 = mysqli_query($link, $query1);
     $result2 = mysqli_query($link, $query2);
@@ -12,9 +12,9 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
     while ($row1 = mysqli_fetch_assoc($result1)) {
         $manufacturers[] = $row1;
     }
-    $distributers = [];
+    $distributors = [];
     while ($row2 = mysqli_fetch_assoc($result2)) {
-        $distributers[] = $row2;
+        $distributors[] = $row2;
     }
     $branches = [];
     while ($row3 = mysqli_fetch_assoc($result3)) {
@@ -56,12 +56,12 @@ require_once '../layout/header.php';
                 </button>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="dist">Distributer</label>
+                <label class="control-label col-sm-2" for="dist">distributor</label>
                 <div class="col-sm-3" >
                     <select id="dist" name="distribter" class="form-control">
-                        <option value="" selected disabled>-- select distributer --</option>
+                        <option value="" selected disabled>-- select distributor --</option>
                         <?php
-                        foreach ($distributers as $key => $value) {
+                        foreach ($distributors as $key => $value) {
                             echo "<option value='" . $value['id'] . "'>" . $value['name'] . "</option>";
                         }
                         ?>
@@ -83,7 +83,7 @@ require_once '../layout/header.php';
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-offset-1 col-sm-2" for="dist-num">Distributer Part-num</label>
+            <label class="control-label col-sm-offset-1 col-sm-2" for="dist-num">distributor Part-num</label>
             <div class="col-sm-3">
                 <input type="text" id="dist-num" name="dist_num" class="form-control">
             </div>
@@ -161,12 +161,12 @@ require_once '../layout/header.php';
 </div>
 
 <!-- Dialog -->
-<div id="dialog_add_dist" title="Add Distributer" style="display: none" class="col-xs-12">
-    <form class="form-horizontal" id="distributerForm">
+<div id="dialog_add_dist" title="Add distributor" style="display: none" class="col-xs-12">
+    <form class="form-horizontal" id="distributorForm">
         <div class="form-group">
-            <label class="control-label col-sm-4" for="distributer">Distributer</label>
+            <label class="control-label col-sm-4" for="distributor">distributor</label>
             <div class="col-sm-8">
-                <input type="text" id="distributer" name="distributer" class="form-control">
+                <input type="text" id="distributor" name="distributor" class="form-control">
             </div>
         </div>
         <div class="form-group">
