@@ -15,8 +15,21 @@ if (isset($_REQUEST['submit_stored']) || isset($_REQUEST['update_stored'])) {
     $branch_id = mysqli_real_escape_string($link, $_REQUEST['branch_id']);
 
     if (isset($_REQUEST['submit_stored'])) {
-        $query = "INSERT INTO store(manu_id, dist_id, manu_part_num, dist_part_num, package, quantity, drawer_num, threshold, branch_id)"
-                . " VALUES ('$manufacturer','$distributer','$manu_part_num','$dist_part_num','$package',$quantity,$drawer_num, $threshold,$branch_id)";
+        $test_query = "SELECT * FROM store WHERE dist_part_num = '$dist_part_num'";
+        $result = mysqli_query($link, $test_query);
+        $d = [];
+        while ($row = mysqli_fetch_assoc($result)) {
+            $d[] = $row;
+        }
+        if (empty($d)) {
+            $query = "INSERT INTO store(manu_id, dist_id, manu_part_num, dist_part_num, package, quantity, drawer_num, threshold, branch_id)"
+                    . " VALUES ('$manufacturer','$distributer','$manu_part_num','$dist_part_num','$package',$quantity,$drawer_num, $threshold,$branch_id)";
+        } else {
+            $new_quantity = $d[0]['quantity'] + $quantity;
+            $query = "UPDATE store SET quantity = $new_quantity, drawer_num = $drawer_num,"
+                    . " threshold = $threshold, branch_id = $branch_id"
+                    . " WHERE dist_part_num = '$dist_part_num'";
+        }
     } elseif (isset($_REQUEST['update_stored'])) {
         $id = mysqli_real_escape_string($link, $_REQUEST['id']);
         $query = "UPDATE store SET"
@@ -25,7 +38,7 @@ if (isset($_REQUEST['submit_stored']) || isset($_REQUEST['update_stored'])) {
                 . " drawer_num = $drawer_num, threshold = $threshold, branch_id = $branch_id"
                 . " WHERE id = $id";
     }
-}elseif (isset($_REQUEST["update_quantity"])) {
+} elseif (isset($_REQUEST["update_quantity"])) {
     $id = mysqli_real_escape_string($link, $_REQUEST['id']);
     $new_quantity = mysqli_real_escape_string($link, $_REQUEST['new_quantity']);
     $query = "UPDATE store SET quantity = $new_quantity WHERE id = $id";

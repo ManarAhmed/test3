@@ -16,8 +16,23 @@ if (isset($_REQUEST['store']) || isset($_REQUEST['update'])) {
     $due_date = mysqli_real_escape_string($link, $_REQUEST['due_date']);
 
     if (isset($_REQUEST['store'])) {
-        $query = "INSERT INTO required(manufacturer, distributer, manu_part_num, dist_part_num, package, required_quantity, responsable_user, project, priority, due_date)"
-                . " VALUES ('$manufacturer','$distributer','$manu_part_num','$dist_part_num','$package',$required_quantity,'$responsable_user','$project',$priority,'$due_date')";
+        $test_query = "SELECT * FROM required WHERE dist_part_num = '$dist_part_num'";
+        $result1 = mysqli_query($link, $test_query);
+        $d1 = [];
+        while ($row = mysqli_fetch_assoc($result1)) {
+            $d1[] = $row;
+        }
+        if (empty($d)) {
+            $query = "INSERT INTO required(manufacturer, distributer, manu_part_num, dist_part_num, package, required_quantity, responsable_user, project, priority, due_date)"
+                    . " VALUES ('$manufacturer','$distributer','$manu_part_num','$dist_part_num','$package',$required_quantity,'$responsable_user','$project',$priority,'$due_date')";
+        } else {
+            $new_quantity = $d1[0]['required_quantity'] + $required_quantity;
+            $query = "UPDATE required SET"
+                    . " manufacturer = $manufacturer, distributer = $distributer, manu_part_num = '$manu_part_num',"
+                    . " dist_part_num = '$dist_part_num', package = '$package', required_quantity = $new_quantity,"
+                    . "responsable_user = '$responsable_user', project = '$project', priority = $priority, "
+                    . "due_date = '$due_date' WHERE dist_part_num = '$dist_part_num'";
+        }
     } elseif (isset($_REQUEST['update'])) {
         $id = mysqli_real_escape_string($link, $_REQUEST['id']);
         $query = "UPDATE required SET"
