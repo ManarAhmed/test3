@@ -21,6 +21,7 @@ if (isset($_POST['user_login'])) {
             $_SESSION['email'] = $data[0]['email'];
             $_SESSION['username'] = $data[0]['user_name'];
             $_SESSION['password'] = $data[0]['password'];
+            $_SESSION['role'] = $data[0]['role'];
             header('Location: http://localhost/EwestStore/store.php');
             exit();
         } else {

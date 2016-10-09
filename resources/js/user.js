@@ -7,6 +7,7 @@ $(function () {
             confirm_password,
             gender,
             position,
+            role,
             allFields,
             tips;
 
@@ -24,7 +25,8 @@ $(function () {
             email: email,
             password: password,
             gender : gender,
-            position: position
+            position: position,
+            role: role
         };
         tips = $(".validTips");
     }
@@ -99,6 +101,7 @@ $(function () {
         valid = valid && checkMatched($('#confirm_password'), $('#password'));
 
         valid = valid && checkList($('#position'),'position');
+        valid = valid && checkList($('#role'),'role');
         valid = valid && checkList($('#gender'),'gender');
 
         return valid;
