@@ -2,7 +2,7 @@
 
 require_once './connection.php';
 
-//print_r($_REQUEST['password']);exit;
+//print_r($_REQUEST);exit;
 if (isset($_REQUEST['add_user']) || isset($_REQUEST['update_user'])) {
     $name = mysqli_real_escape_string($link, $_REQUEST['name']);
     $user_name = mysqli_real_escape_string($link, $_REQUEST['user_name']);

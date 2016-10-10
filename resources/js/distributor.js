@@ -6,9 +6,9 @@ $(function () {
         var dist_website = $('#dist_website').val();
         mydistdata = {
             distributor: distributor,
-            dist_website: dist_website,
+            dist_website: dist_website
         };
-    }
+    };
 
 //check validation then INSERT new distributor data
     $('#submit_dist').on('click', function () {
@@ -53,7 +53,7 @@ $(function () {
             data: mydistdata,
             success: function (data) {
                 console.log(data);
-                window.location.href = "http://localhost/EwestStore/distributor.php";
+                window.location.href = history.go(-1);
             },
             error: function (data) {
                 console.log('server error');
@@ -67,7 +67,7 @@ $(function () {
         var valid = 1;
         if ($("#distributor").val() == '') {
             $("#distributor").parent('div').parent('div').addClass('has-error has-feedback');
-            $("#distributor").after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>')
+            $("#distributor").after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
             valid = 0;
         } else {
             $("#distributor").next('.form-control-feedback').hide();

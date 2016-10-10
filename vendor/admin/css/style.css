@@ -2550,6 +2550,10 @@ ul.ft-link li a i {
     -webkit-border-radius: 50%;
     border: 2px solid #688a7e;
     display: inline-block;
+    width: 30px;
+    height: 30px;
+        
+        
 }
 .profile-ava img.simple{
     border-radius: 50%;

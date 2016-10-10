@@ -10,28 +10,28 @@
         <title>Ewest Store Admin</title>
 
         <!-- Bootstrap CSS -->    
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/bootstrap/css/bootstrap.min.css'; ?>" rel="stylesheet">
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/bootstrap/css/bootstrap.min.css'; ?>" rel="stylesheet">
         <!-- bootstrap theme -->
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/css/bootstrap-theme.css'; ?>" rel="stylesheet">
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/css/bootstrap-theme.css'; ?>" rel="stylesheet">
         <!--external css-->
         <!-- font icon -->
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/css/elegant-icons-style.css'; ?>" rel="stylesheet" />
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/font-awesome/css/font-awesome.min.css'; ?>" rel="stylesheet" />    
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/css/elegant-icons-style.css'; ?>" rel="stylesheet" />
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/font-awesome/css/font-awesome.min.css'; ?>" rel="stylesheet" />    
         <!-- full calendar css-->
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css'; ?>" rel="stylesheet" />
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/assets/fullcalendar/fullcalendar/fullcalendar.css'; ?>" rel="stylesheet" />
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css'; ?>" rel="stylesheet" />
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/assets/fullcalendar/fullcalendar/fullcalendar.css'; ?>" rel="stylesheet" />
         <!-- easy pie chart-->
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css'; ?>" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css'; ?>" rel="stylesheet" type="text/css" media="screen"/>
         <!-- owl carousel -->
-        <link rel="stylesheet" href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/css/owl.carousel.css'; ?>" type="text/css">
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/css/jquery-jvectormap-1.2.2.css'; ?>" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/css/owl.carousel.css'; ?>" type="text/css">
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/css/jquery-jvectormap-1.2.2.css'; ?>" rel="stylesheet">
         <!-- Custom styles -->
-        <link rel="stylesheet" href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/css/fullcalendar.css'; ?>">
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/css/widgets.css'; ?>" rel="stylesheet">
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/css/style.css'; ?>" rel="stylesheet">
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/css/style-responsive.css'; ?>" rel="stylesheet" />
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/css/xcharts.min.css'; ?>" rel=" stylesheet">	
-        <link href="<?php echo '/' . substr(__DIR__, '-27', '-17') . '/vendor/admin/css/jquery-ui-1.10.4.min.css'; ?>" rel="stylesheet">
+        <link rel="stylesheet" href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/css/fullcalendar.css'; ?>">
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/css/widgets.css'; ?>" rel="stylesheet">
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/css/style.css'; ?>" rel="stylesheet">
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/css/style-responsive.css'; ?>" rel="stylesheet" />
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/css/xcharts.min.css'; ?>" rel=" stylesheet">	
+        <link href="<?php echo '/' . substr(__DIR__, '-33', '-23') . '/vendor/admin/css/jquery-ui-1.10.4.min.css'; ?>" rel="stylesheet">
         <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
         <!--[if lt IE 9]>
           <script src="js/html5shiv.js"></script>
@@ -50,7 +50,7 @@
                 </div>
 
                 <!--logo start-->
-                <a href="index.html" class="logo">Ewest <span class="lite">Admin</span></a>
+                <a href="http://localhost/EwestStore/str_admin/index.php" class="logo">Ewest <span class="lite">Admin</span></a>
                 <!--logo end-->
 
                 <div class="top-nav notification-row">                
@@ -60,18 +60,21 @@
                         <li class="dropdown">
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="profile-ava">
-                                    <img alt="" src="../vendor/admin/img/avatar1_small.jpg">
+                                    <img alt="" src="/<?php echo  substr(__DIR__, '-33', '-23')?>/vendor/admin/img/avatar1_small.jpg" class="img-responsive">
                                 </span>
-                                <span class="username">Manar Ahmed</span>
+                                <span class="username"><?php echo $_SESSION['username']; ?></span>
                                 <b class="caret"></b>
                             </a>
                             <ul class="dropdown-menu extended logout">
                                 <div class="log-arrow-up"></div>
-                                <li class="eborder-top">
-                                    <a href="#"><i class="icon_profile"></i> My Profile</a>
+                                 <li class="eborder-top">
+                                    <a href="http://localhost/EwestStore/index.php"><i class="icon_desktop"></i> Visit Website</a>
                                 </li>
                                 <li>
-                                    <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+                                    <a href="http://localhost/EwestStore/str_admin/profile.php"><i class="icon_profile"></i> My Profile</a>
+                                </li>
+                                <li>
+                                    <a href="http://localhost/EwestStore/user/logout.php"><i class="icon_key_alt"></i> Log Out</a>
                                 </li>
                             </ul>
                         </li>
@@ -99,8 +102,8 @@
                                 <span class="menu-arrow arrow_carrot-right"></span>
                             </a>
                             <ul class="sub">
-                                <li><a class="" href="ma_store/index.php">show store</a></li>                          
-                                <li><a class="" href="ma_store/new.php">add to store</a></li>
+                                <li><a class="" href="http://localhost/EwestStore/str_admin/ma_store/index.php">show store</a></li>                          
+                                <li><a class="" href="http://localhost/EwestStore/str_admin/ma_store/new.php">add to store</a></li>
                             </ul>
                         </li> 
                         <li class="sub-menu">
@@ -110,35 +113,50 @@
                                 <span class="menu-arrow arrow_carrot-right"></span>
                             </a>
                             <ul class="sub">
-                                <li><a class="" href="ma_required/index.php">show required</a></li>                          
-                                <li><a class="" href="ma_required/new.php">add to required</a></li>
+                                <li><a class="" href="http://localhost/EwestStore/str_admin/ma_required/index.php">show required</a></li>                          
+                                <li><a class="" href="http://localhost/EwestStore/str_admin/ma_required/new.php">add to required</a></li>
                             </ul>
                         </li> 
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
                                 <i class="icon_document_alt"></i>
-                                <span>Manufacturer</span>
+                                <span>Manufacturers</span>
                                 <span class="menu-arrow arrow_carrot-right"></span>
                             </a>
                             <ul class="sub">
-                                <li><a class="" href="ma_manufacturer/index.php">show manufacturers</a></li>                          
-                                <li><a class="" href="ma_manufacturer/new.php">add to manufacturers</a></li>
+                                <li><a class="" href="http://localhost/EwestStore/str_admin/ma_manufacturer/index.php">show manufacturers</a></li>                          
+                                <li><a class="" href="http://localhost/EwestStore/str_admin/ma_manufacturer/new.php">add to manufacturers</a></li>
                             </ul>
                         </li> 
                         <li class="sub-menu">
                             <a href="javascript:;" class="">
                                 <i class="icon_document_alt"></i>
-                                <span>Distributor</span>
+                                <span>Distributors</span>
                                 <span class="menu-arrow arrow_carrot-right"></span>
                             </a>
                             <ul class="sub">
-                                <li><a class="" href="ma_distributer/index.php">show distributors</a></li>                          
-                                <li><a class="" href="ma_distributer/new.php">add to distributors</a></li>
+                                <li><a class="" href="http://localhost/EwestStore/str_admin/ma_distributor/index.php">show distributors</a></li>                          
+                                <li><a class="" href="http://localhost/EwestStore/str_admin/ma_distributor/new.php">add to distributors</a></li>
                             </ul>
                         </li> 
-
+                        <li class="sub-menu">
+                            <a href="javascript:;" class="">
+                                <i class="icon_document_alt"></i>
+                                <span>Users</span>
+                                <span class="menu-arrow arrow_carrot-right"></span>
+                            </a>
+                            <ul class="sub">
+                                <li><a class="" href="http://localhost/EwestStore/str_admin/ma_user/index.php">show users</a></li>                          
+                                <li><a class="" href="http://localhost/EwestStore/str_admin/ma_user/register.php">add to users</a></li>
+                            </ul>
+                        </li> 
                     </ul>
                     <!-- sidebar menu end-->
                 </div>
             </aside>
             <!--sidebar end-->
+
+            <section id="main-content">
+                <section class="wrapper">
+                    <div class="row">
+                        <div class="col-md-12">

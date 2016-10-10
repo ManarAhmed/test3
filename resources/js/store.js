@@ -65,7 +65,7 @@ $(function () {
             data: mystoreddata,
             success: function (data) {
                 console.log(data);
-                window.location.href = "http://localhost/EwestStore/index.php";
+                window.location.href = history.go(-1);
             },
             error: function (data) {
                 console.log('server error');
@@ -160,11 +160,11 @@ $(function () {
                         success: function (data) {
                             console.log(data);
                             if (action === 'new') {
-                                window.location.href = "http://localhost/EwestStore/store/new.php";
+                                window.location.href = history.go(-1);
                             }
                             else if (action === 'edit') {
                                 var id = $('#stored_id').val();
-                                window.location.href = "http://localhost/EwestStore/store/edit.php?id=" + id;
+                                window.location.href = history.go(-1);
                             }
                         },
                         error: function (data) {
@@ -202,11 +202,11 @@ $(function () {
                         success: function (data) {
                             console.log(data);
                             if (action === 'new') {
-                                window.location.href = "http://localhost/EwestStore/store/new.php";
+                                window.location.href = history.go(-1);
                             }
                             else if (action === 'edit') {
                                 var id = $('#stored_id').val();
-                                window.location.href = "http://localhost/EwestStore/store/edit.php?id=" + id;
+                                window.location.href = history.go(-1);
                             }
                         },
                         error: function (data) {
@@ -318,7 +318,7 @@ $(function () {
             data: {new_quantity: new_quantity, update_quantity: 'ok'},
             success: function (data) {
                 console.log(data);
-                window.location.href = "http://localhost/EwestStore/store.php";
+                window.location.href = history.go(-1);
             },
             error: function (data) {
                 console.log('server error');
@@ -336,7 +336,7 @@ $(function () {
             data: log_data,
             success: function (data) {
                 console.log(data);
-                window.location.href = "http://localhost/EwestStore/store.php";
+                window.location.href = history.go(-1);
             },
             error: function (data) {
                 console.log("Error in insertLog: " + data);

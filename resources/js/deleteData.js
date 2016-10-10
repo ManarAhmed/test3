@@ -82,7 +82,29 @@ $(function () {
             }
         });
     });
-
+    
+// DELETE user data
+    $('.delete_user').on('click', function (event) {
+        event.preventDefault();
+        var id = $(this).attr('id');
+        alert($("#dialog-confirm").attr('class'));
+        $("#dialog-confirm").dialog({
+            resizable: false,
+            height: "auto",
+            width: 400,
+            modal: true,
+            buttons: {
+                "Delete": function () {
+                    updateData("user", id);
+                    $(this).dialog("close");
+                },
+                Cancel: function () {
+                    $(this).dialog("close");
+                }
+            }
+        });
+    });
+    
 // DELETE data function
     var updateData = function (filename, id) {
         var setting = {
@@ -91,7 +113,7 @@ $(function () {
             data: {delete: "ok"},
             success: function (data) {
                 console.log(data);
-                window.location.href = "http://localhost/EwestStore/"+filename+".php";
+                location.reload();
             },
             error: function (data) {
                 console.log('server error');

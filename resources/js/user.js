@@ -17,8 +17,10 @@ $(function () {
         email = $('#email').val();
         password = $("#password").val();
         confirm_password = $('#confirm_password').val();
-        gender = $('#gender').val();
+        gender = $('#gender:checked').val();
         position = $('#position').val();
+        role = $('#role').val();
+        
         allFields = {
             name: name,
             user_name: user_name,
@@ -28,6 +30,7 @@ $(function () {
             position: position,
             role: role
         };
+        console.log(allFields);
         tips = $(".validTips");
     }
 
@@ -114,7 +117,7 @@ $(function () {
             data: allFields,
             success: function (data) {
                 console.log(data);
-                window.location.href = "http://localhost/EwestStore/user/login.php";
+                window.location.href = "http://localhost/EwestStore/str_admin/ma_user/index.php";
             },
             error: function (data) {
                 console.log(data);
@@ -131,7 +134,7 @@ $(function () {
             data: allFields,
             success: function (data) {
                 console.log(data);
-                window.location.href = "http://localhost/EwestStore/user/profile.php";
+                //location.reload();
             },
             error: function (data) {
                 console.log(data);

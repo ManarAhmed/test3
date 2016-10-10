@@ -6,10 +6,10 @@ $(function () {
         var manu_website = $('#manu_website').val();
         mymanudata = {
             manufacturer: manufacturer,
-            manu_website: manu_website,
+            manu_website: manu_website
             
         };
-    }
+    };
 
 //check validation then INSERT new manufacturer data
     $('#submit_manu').on('click', function () {
@@ -54,7 +54,7 @@ $(function () {
             data: mymanudata,
             success: function (data) {
                 console.log(data);
-                window.location.href = "http://localhost/EwestStore/manufacturer.php";
+                window.location.href = history.go(-1);
             },
             error: function (data) {
                 console.log('server error');
@@ -68,7 +68,7 @@ $(function () {
         var valid = 1;
         if ($("#manufacturer").val() == '') {
             $("#manufacturer").parent('div').parent('div').addClass('has-error has-feedback');
-            $("#manufacturer").after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>')
+            $("#manufacturer").after('<span class="glyphicon glyphicon-remove form-control-feedback"></span>');
             valid = 0;
         } else {
             $("#manufacturer").next('.form-control-feedback').hide();

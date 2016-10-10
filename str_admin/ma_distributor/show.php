@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['role']) && $_SESSION['role'] === "admin") {
+if (isset($_SESSION['role']) && $_SESSION['role'] === "Administrator") {
     require_once '../../db/connection.php';
     $query = 'select * from distributor where id =' . $_GET["id"];
     $result = mysqli_query($link, $query);
@@ -17,34 +17,37 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "admin") {
 require_once '../admin_layout/header.php';
 if (!empty($data)) {
     ?>
+    <section class="panel">
+        <header class="panel-heading">
+            <h3>Distributor [<?php echo $data[0]['name'] ?>]</h3>
 
-    <div class="row">
-        <div style="font-size: 22px; font-weight: bold; color: #d9534f;">distributor: <?php echo $data[0]['name'] ?></div>
-    </div>
-    <div style="height: 30px;"></div>
+        </header>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
 
-    <div class="table-responsive">
-        <table class="table table-striped">
+                    <tr>
+                        <th class="text-left">ID</th>
+                        <td class="text-left"><?php echo $data[0]['id'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">distributor</th>
+                        <td class="text-left"><?php echo $data[0]['name'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Website</th>
+                        <td class="text-left"><?php echo $data[0]['website'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left" colspan="3"></th>
+                    </tr>
 
-            <tr>
-                <th class="text-left">ID</th>
-                <td class="text-left"><?php echo $data[0]['id'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">distributor</th>
-                <td class="text-left"><?php echo $data[0]['name'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">Website</th>
-                <td class="text-left"><?php echo $data[0]['website'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left" colspan="3"></th>
-            </tr>
+                </table>
+            </div>
+            <a href="http://localhost/EwestStore/str_admin/ma_distributor/index.php" class="btn btn-info">Back to distributors</a>
+        </div>
+    </section>
 
-        </table>
-    </div>
-    <a href="http://localhost/EwestStore/distributor.php" class="btn btn-info">Back to distributors</a>
 
     <?php
 } else {

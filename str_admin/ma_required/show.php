@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (isset($_SESSION['role']) && $_SESSION['role'] === "admin") {
+if (isset($_SESSION['role']) && $_SESSION['role'] === "Administrator") {
     require_once '../../db/connection.php';
     $query = 'select r.id,m.name as manufacturer, d.name as distributor, r.manu_part_num, r.dist_part_num,'
             . ' r.package, r.required_quantity, r.responsable_user, r.project, r.priority, r.due_date'
@@ -20,66 +20,67 @@ $priorities = ['Very Low', 'Low', 'Medium', 'Heigh', 'Very Heigh'];
 require_once '../admin_layout/header.php';
 if (!empty($data)) {
     ?>
+    <section class="panel">
+        <header class="panel-heading">
+            <h3>Required component [<?php echo $data[0]['manu_part_num'] ?>]</h3>
 
-    <div class="row">
-        <div style="font-size: 22px; font-weight: bold; color: #d9534f;">Required: <?php echo $data[0]['manu_part_num'] ?></div>
-    </div>
-    <div style="height: 30px;"></div>
+        </header>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
 
-    <div class="table-responsive">
-        <table class="table table-striped">
+                    <tr>
+                        <th class="text-left">ID</th>
+                        <td class="text-left"><?php echo $data[0]['id'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Manufacturer</th>
+                        <td class="text-left"><?php echo $data[0]['manufacturer'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">distributor</th>
+                        <td class="text-left"><?php echo $data[0]['distributor'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Manufacturer Part-num</th>
+                        <td class="text-left"><?php echo $data[0]['manu_part_num'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">distributor Part-num</th>
+                        <td class="text-left"><?php echo $data[0]['dist_part_num'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Package</th>
+                        <td class="text-left"><?php echo $data[0]['package'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Required Quantity</th>
+                        <td class="text-left"><?php echo $data[0]['required_quantity'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Responsible User</th>
+                        <td class="text-left"><?php echo $data[0]['responsable_user'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Project</th>
+                        <td class="text-left"><?php echo $data[0]['project'] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Priority</th>
+                        <td class="text-left"><?php echo $priorities[$data[0]['priority'] - 1] ?></td>
+                    </tr>
+                    <tr>
+                        <th class="text-left">Due to date</th>
+                        <td class="text-left"><?php echo $data[0]['due_date'] ?></td>
+                    </tr>
+                </table>
+            </div>
+            <a href="http://localhost/EwestStore/str_admin/ma_required/index.php" class="btn btn-info">Back to required</a>
+        </div>
+    </section>
 
-            <tr>
-                <th class="text-left">ID</th>
-                <td class="text-left"><?php echo $data[0]['id'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">Manufacturer</th>
-                <td class="text-left"><?php echo $data[0]['manufacturer'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">distributor</th>
-                <td class="text-left"><?php echo $data[0]['distributor'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">Manufacturer Part-num</th>
-                <td class="text-left"><?php echo $data[0]['manu_part_num'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">distributor Part-num</th>
-                <td class="text-left"><?php echo $data[0]['dist_part_num'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">Package</th>
-                <td class="text-left"><?php echo $data[0]['package'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">Required Quantity</th>
-                <td class="text-left"><?php echo $data[0]['required_quantity'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">Responsible User</th>
-                <td class="text-left"><?php echo $data[0]['responsable_user'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">Project</th>
-                <td class="text-left"><?php echo $data[0]['project'] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">Priority</th>
-                <td class="text-left"><?php echo $priorities[$data[0]['priority'] - 1] ?></td>
-            </tr>
-            <tr>
-                <th class="text-left">Due to date</th>
-                <td class="text-left"><?php echo $data[0]['due_date'] ?></td>
-            </tr>
-        </table>
-    </div>
-    <a href="http://localhost/EwestStore/required.php" class="btn btn-info">Back to required</a>
     <?php
 } else {
     echo '<p style="font-weight: bold; font-size: 24px;">This required component is not found.</p>';
 }
 require_once '../admin_layout/footer.php';
-?>
-

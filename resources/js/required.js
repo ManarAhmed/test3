@@ -79,7 +79,7 @@ $(function () {
             data: mydata,
             success: function (data) {
                 console.log(data);
-                window.location.href = "http://localhost/EwestStore/required.php";
+                window.location.href = history.go(-1);
             },
             error: function (data) {
                 console.log('server error');

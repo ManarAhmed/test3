@@ -22,8 +22,13 @@ if (isset($_POST['user_login'])) {
             $_SESSION['username'] = $data[0]['user_name'];
             $_SESSION['password'] = $data[0]['password'];
             $_SESSION['role'] = $data[0]['role'];
-            header('Location: http://localhost/EwestStore/store.php');
-            exit();
+            if ($_SESSION['role'] === 'User') {
+                header('Location: http://localhost/EwestStore/store.php');
+                exit();
+            }elseif ($_SESSION['role'] === 'Administrator') {
+                header('Location: http://localhost/EwestStore/str_admin/index.php');
+                exit();
+            }
         } else {
             echo '<p class="validTips">password is not correct</p>';
         }
