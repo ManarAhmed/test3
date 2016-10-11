@@ -44,28 +44,32 @@ require_once '../admin_layout/header.php';
                     <div class="col-sm-10">
                         <table class="table">
                             <tr>
-                                <th>Name</th>
+                                <th style=" color: #ffffff;">Name</th>
                                 <td><?php echo $data[0]['name'] ?></td>
                             </tr>
                             <tr>
-                                <th>Username</th>
+                                <th style=" color: #ffffff;">Username</th>
                                 <td><?php echo $data[0]['user_name'] ?></td>
                             </tr>
                             <tr>
-                                <th>Email</th>
+                                <th style=" color: #ffffff;">Email</th>
                                 <td><?php echo $data[0]['email'] ?></td>
                             </tr>
                             <tr>
-                                <th>Gender</th>
+                                <th style=" color: #ffffff;">Gender</th>
                                 <td><?php echo $data[0]['gender'] ?></td>
                             </tr>
                             <tr>
-                                <th>Position</th>
+                                <th style=" color: #ffffff;">Position</th>
                                 <td><?php echo $data[0]['position'] ?></td>
                             </tr>
                             <tr>
-                                <th>Role</th>
+                                <th style=" color: #ffffff;">Role</th>
                                 <td><?php echo $data[0]['role'] ?></td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td><a href="http://localhost/EwestStore/str_admin/ma_user/index.php" class="btn btn-info">Back</a></td>
                             </tr>
                         </table>
                     </div>
@@ -76,7 +80,6 @@ require_once '../admin_layout/header.php';
         </div>
     </div>
 </section>
-
 <style>
     body{
         background: url(../resources/images/profile_bckground.jpeg) no-repeat center center fixed;
@@ -87,9 +90,6 @@ require_once '../admin_layout/header.php';
     }
     #profile{
         background: rgba(0,0,0,0.5) center;
-    }
-    th{
-        color: #ffffff;
     }
     td{
         color: #ffffff;
