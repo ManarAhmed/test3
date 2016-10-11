@@ -13,7 +13,6 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "Administrator") {
     mysqli_close($link);
 }
 $position = ['Engineer', 'Team Leader', 'Manager'];
-$role = ['Administrator', 'User'];
 require_once '../admin_layout/header.php';
 if ($_SESSION['user_id'] === $_GET["id"] || $data[0]['role'] === 'User') {
     ?>
@@ -33,7 +32,6 @@ if ($_SESSION['user_id'] === $_GET["id"] || $data[0]['role'] === 'User') {
                         <p class="validTips"></p>
                     </div>
 
-
                     <form id="registerUser" class="form-horizontal" role="form">
                         <input type="hidden" id="user_id" name="user_id" value="<?php echo $data[0]['id']; ?>"> 
                         <div class="form-group">
@@ -52,18 +50,6 @@ if ($_SESSION['user_id'] === $_GET["id"] || $data[0]['role'] === 'User') {
                             <label for="email" class="col-sm-offset-2 col-sm-2">Email</label>
                             <div class="col-sm-5">
                                 <input type="email" name="email" id="email" class="form-control" value="<?php echo $data[0]['email']; ?>">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="col-sm-offset-2 col-sm-2">Password</label>
-                            <div class="col-sm-5">
-                                <input type="password" name="password" id="password" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="confirm_password" class="col-sm-offset-2 col-sm-2">Confirm Password</label>
-                            <div class="col-sm-5">
-                                <input type="password" name="confirm_password" id="confirm_password" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
@@ -91,25 +77,8 @@ if ($_SESSION['user_id'] === $_GET["id"] || $data[0]['role'] === 'User') {
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="role" class="col-sm-offset-2 col-sm-2">Role</label>
-                            <div class="col-sm-5">
-                                <select id="role" name="role" class="form-control">
-                                    <option value="" selected disabled>-- select role --</option>
-                                    <?php
-                                    foreach ($role as $value) {
-                                        if ($value === $data[0]['role']) {
-                                            echo "<option value='$value' selected>$value</option>";
-                                        } else {
-                                            echo "<option value='$value'>$value</option>";
-                                        }
-                                    }
-                                    ?>
-                                </select> 
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <div class="col-sm-offset-4 col-sm-8">
-                                <input type="button" value="Update" id="update_profile" class="btn btn-success" name="update_profile">
+                                <input type="button" value="Update" id="admin_update_profile" class="btn btn-success" name="admin_update_profile">
                                 <a href="http://localhost/EwestStore/str_admin/ma_user/index.php" class="btn btn-info">Back</a>
                             </div>
                         </div>

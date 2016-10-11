@@ -24,7 +24,7 @@ if (isset($_SESSION['email']) && isset($_SESSION['password'])) {
         }
         $arr[$flag][$flag2] = $data[$i];
     }
-    mysqli_close($link);
+  mysqli_close($link);
 } else {
     header('Location: http://localhost/EwestStore/user/login.php');
     exit();
@@ -39,7 +39,7 @@ require_once './layout/header.php';
 </div>
 <div style="height: 30px;"></div>
 <?php foreach ($arr as $key => $val) { ?>
-    <h3 class="text-center" style="font-size: 22px; font-weight: bold; color: #FF0000;"><?php echo 'distributor ( ' . $val[$key]['distributor'] . ' ) requests'; ?></h3><br>
+    <h3 class="text-center" style="font-size: 22px; font-weight: bold; color: #FF0000;"><?php echo 'distributor ( ' . $val[0]['distributor'] . ' ) requests'; ?></h3><br>
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
@@ -84,7 +84,7 @@ require_once './layout/header.php';
             </tbody>
         </table>
     </div>
-        <a href=<?php echo "http://localhost/EwestStore/download.php?filename=".$val[$key]['distributor'];?> class="btn btn-success">download as excel sheet</a>
+        <a href=<?php echo "http://localhost/EwestStore/download.php?filename=".$val[0]['distributor'];?> class="btn btn-success">download as excel sheet</a>
 
     <hr>
     <br>

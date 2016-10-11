@@ -20,15 +20,31 @@ $(function () {
         gender = $('#gender:checked').val();
         position = $('#position').val();
         role = $('#role').val();
-        
+
         allFields = {
             name: name,
             user_name: user_name,
             email: email,
             password: password,
-            gender : gender,
+            gender: gender,
             position: position,
             role: role
+        };
+        tips = $(".validTips");
+    }
+    function adminGetUserData() {
+        name = $('#name').val();
+        user_name = $('#user_name').val();
+        email = $('#email').val();
+        gender = $('#gender:checked').val();
+        position = $('#position').val();
+
+        allFields = {
+            name: name,
+            user_name: user_name,
+            email: email,
+            gender: gender,
+            position: position,
         };
         tips = $(".validTips");
     }
@@ -48,10 +64,10 @@ $(function () {
             return true;
         }
     }
-    function checkList(o,n) {
+    function checkList(o, n) {
         if (!o.val()) {
             o.parent('div').parent('div').addClass('has-error');
-            updateTips("You must select your "+n);
+            updateTips("You must select your " + n);
             return false;
         } else {
             tips.hide();
@@ -102,12 +118,30 @@ $(function () {
 
         valid = valid && checkMatched($('#confirm_password'), $('#password'));
 
-        valid = valid && checkList($('#position'),'position');
-        valid = valid && checkList($('#role'),'role');
-        valid = valid && checkList($('#gender'),'gender');
+        valid = valid && checkList($('#position'), 'position');
+        valid = valid && checkList($('#role'), 'role');
+        valid = valid && checkList($('#gender'), 'gender');
 
         return valid;
     }
+
+    function adminCheckUser() {
+        var valid = true;
+        valid = valid && checkLength($('#name'), "name", 3, 16);
+        valid = valid && checkRegexp($('#name'), /^[a-zA-Z]([a-z\s])+$/i, "Name may consist of a-z, A-Z, spaces.");
+
+        valid = valid && checkLength($('#user_name'), "username", 3, 16);
+        valid = valid && checkRegexp($('#user_name'), /^[a-z]([0-9a-z_\s])+$/i, "Username may consist of a-z, 0-9, underscores, spaces and must begin with a letter.");
+
+        valid = valid && checkLength($('#email'), "email", 6, 80);
+        valid = valid && checkRegexp($('#email'), emailRegex, "email should be like manar.ahmed@yahoo.com");
+        valid = valid && checkList($('#position'), 'position');
+
+        valid = valid && checkList($('#gender'), 'gender');
+
+        return valid;
+    }
+
     function addUser() {
         allFields['add_user'] = 'ok';
         var setting = {
@@ -116,7 +150,7 @@ $(function () {
             data: allFields,
             success: function (data) {
                 console.log(data);
-                //window.location.href = "http://localhost/EwestStore/str_admin/ma_user/index.php";
+                window.location.href = "http://localhost/EwestStore/str_admin/ma_user/index.php";
             },
             error: function (data) {
                 console.log(data);
@@ -141,10 +175,27 @@ $(function () {
         };
         $.ajax(setting);
     }
+    function adminUpdateUser() {
+        allFields['id'] = $('#user_id').val();
+        allFields['admin_update_user'] = 'ok';
+        var setting = {
+            url: 'http://localhost/EwestStore/db/userTable.php',
+            type: 'post',
+            data: allFields,
+            success: function (data) {
+                console.log(data);
+                history.go(-1);
+            },
+            error: function (data) {
+                console.log(data);
+            }
+        };
+        $.ajax(setting);
+    }
 //check validation then ADD new user
     $('#add_user').on('click', function () {
         getUserData();
-                console.log(allFields);
+        console.log(allFields);
 
         if (checkUser()) {
             addUser();
@@ -158,5 +209,10 @@ $(function () {
             updateUser();
         }
     });
-
+    $('#admin_update_profile').on('click', function () {
+        adminGetUserData();
+        if (adminCheckUser()) {
+            adminUpdateUser();
+        }
+    });
 });

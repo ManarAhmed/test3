@@ -12,7 +12,6 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "Administrator") {
     mysqli_close($link);
 }
 $position = ['Engineer', 'Team Leader', 'Manager'];
-$role = ['Administrator', 'User'];
 require_once './admin_layout/header.php';
 ?>
 
@@ -168,18 +167,7 @@ require_once './admin_layout/header.php';
                                     <div class="form-group">
                                         <label for="role" class="col-lg-2 control-label">Role</label>
                                         <div class="col-lg-6">
-                                            <select id="role" name="role" class="form-control">
-                                                <option value="" disabled>-- select role --</option>
-                                                <?php
-                                                foreach ($role as $value) {
-                                                    if ($value === $data[0]['role']) {
-                                                        echo "<option value='" . $value . "' selected>" . $value . "</option>";
-                                                    } else {
-                                                        echo "<option value='" . $value . "'>" . $value . "</option>";
-                                                    }
-                                                }
-                                                ?>
-                                            </select> 
+                                            <input type="text" id="role" name="role" class="form-control" value="<?php echo $data[0]['role'];?>" disabled>
                                         </div>
                                     </div>
                                     <div class="form-group">

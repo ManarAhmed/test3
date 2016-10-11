@@ -54,7 +54,7 @@ $(function () {
             data: mymanudata,
             success: function (data) {
                 console.log(data);
-                location.reload();
+                history.go(-1);
             },
             error: function (data) {
                 console.log('server error');

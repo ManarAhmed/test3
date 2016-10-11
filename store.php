@@ -38,12 +38,12 @@ require_once './layout/header.php';
         <tbody>
             <?php
             foreach ($data as $key => $value) {
-                if($value['quantity'] < $value['threshold']){
+                if ($value['quantity'] < $value['threshold']) {
                     echo'<tr style="background-color: #ffaa99">';
-                }  else {
-                     echo'<tr>';
+                } else {
+                    echo'<tr>';
                 }
-                
+
                 echo '<td class="text-center">' . $value['id'] . '</td>';
                 echo '<td class="text-center" id="manu_part_num" >' . $value['manu_part_num'] . '</td>';
                 echo '<td class="text-center" >' . $value['package'] . '</td>';
@@ -51,15 +51,19 @@ require_once './layout/header.php';
                 echo '<td class="text-center" >' . $value['drawer_num'] . '</td>';
                 echo '<td class="text-center" nowrap>'
                 . '<a href="http://localhost/EwestStore/store/show.php?id=' . $value['id'] . '"  class="btn btn-info" name="show" style="margin:5px;">show</a>'
-                . '<a href="http://localhost/EwestStore/log_component/show.php?id=' . $value['id'] . '"  class="btn btn-warning" name="log" style="margin:5px;">Log Details</a>'
                 . '<input type="button" id="' . $value['id'] . '" class="btn btn-success btn_add_component" name="btn_add_component" value="Add" style="margin:5px;">'
-                . '<input type="button" id="' . $value['id'] . '" class="btn btn-danger btn_pull_component" name="btn_pull_component" value="Pull" style="margin:5px;">'
+                . '<input type="button" id="' . $value['id'] . '" class="btn btn-warning btn_pull_component" name="btn_pull_component" value="Pull" style="margin:5px;">'
+                . '<input type="button" id="' . $value['id'] . '" class="btn btn-danger delete_stored" name="delete_stored" value="Delete" style="margin:5px;">'
                 . '</td>';
                 echo '</tr>';
             }
             ?>
         </tbody>
     </table>
+</div>
+<!-- Dialog -->
+<div id="dialog-confirm" title="Delete Stored component?" style="display: none">
+    <p style="font-size: 16px; "><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>These item will be permanently deleted and cannot be recovered.<br><h4>Are you sure?</h4></p>
 </div>
 
 <!-- Dialog -->

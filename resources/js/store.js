@@ -65,7 +65,7 @@ $(function () {
             data: mystoreddata,
             success: function (data) {
                 console.log(data);
-                window.location.href = history.go(-1);
+                history.go(-1);
             },
             error: function (data) {
                 console.log('server error');
@@ -159,13 +159,7 @@ $(function () {
                         data: data,
                         success: function (data) {
                             console.log(data);
-                            if (action === 'new') {
-                                window.location.href = history.go(-1);
-                            }
-                            else if (action === 'edit') {
-                                var id = $('#stored_id').val();
-                                window.location.href = history.go(-1);
-                            }
+                            location.reload();
                         },
                         error: function (data) {
                             console.log(data);
@@ -201,13 +195,7 @@ $(function () {
                         data: data,
                         success: function (data) {
                             console.log(data);
-                            if (action === 'new') {
-                                window.location.href = history.go(-1);
-                            }
-                            else if (action === 'edit') {
-                                var id = $('#stored_id').val();
-                                window.location.href = history.go(-1);
-                            }
+                            location.reload();
                         },
                         error: function (data) {
                             console.log(data);
@@ -318,7 +306,7 @@ $(function () {
             data: {new_quantity: new_quantity, update_quantity: 'ok'},
             success: function (data) {
                 console.log(data);
-                window.location.href = history.go(-1);
+                location.reload();
             },
             error: function (data) {
                 console.log('server error');
@@ -336,7 +324,7 @@ $(function () {
             data: log_data,
             success: function (data) {
                 console.log(data);
-                window.location.href = history.go(-1);
+                history.go(-1);
             },
             error: function (data) {
                 console.log("Error in insertLog: " + data);

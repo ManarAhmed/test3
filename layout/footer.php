@@ -33,7 +33,7 @@
 <style>
     .footer {
         position: fixed;
-        height: 50px;
+        height: 25px;
         width: 100%;
         background-color: #333333;
         bottom: 0px;
@@ -43,7 +43,6 @@
         position: relative;
         width: 100%;
         color: #fff;
-        line-height: 40px;
         font-size: 1em;
         bottom:0;
     }

@@ -5,7 +5,7 @@ if ($_SESSION['role'] !== "Administrator") {
     exit();
 }
 $position = ['Engineer', 'Team Leader', 'Manager'];
-$role = ['Administrator', 'User'];
+$role = ['User'];
 require_once '../admin_layout/header.php';
 ?>
 <div class="row">

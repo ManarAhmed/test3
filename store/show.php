@@ -76,13 +76,8 @@ if (!empty($data)) {
     </div>
     <a href="http://localhost/EwestStore/store/edit.php?id=<?php echo $data[0]['id']; ?>" class="btn btn-warning" name="update" style="margin:5px;">Edit</a>
     <input type="button" id="<?php echo $data[0]['id']; ?>" class="btn btn-success btn_require" name="btn_require" value="Require" style="margin:5px; background-color: #007fff;">
-    <input type="button" id="<?php echo $data[0]['id']; ?>" class="btn btn-danger delete_stored" name="delete_stored" value="Delete" style="margin:5px;">
     <a href="http://localhost/EwestStore/store.php" class="btn btn-info">Back to store</a>
-
-    <!-- Dialog -->
-    <div id="dialog-confirm" title="Delete Stored component?" style="display: none">
-        <p style="font-size: 16px; "><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>These item will be permanently deleted and cannot be recovered.<br><h4>Are you sure?</h4></p>
-    </div>
+    <a href="http://localhost/EwestStore/log_component/show.php?id=<?php echo $data[0]['id']; ?>"  class="btn btn-success" name="log" style="margin:5px;">Log Details</a>
 
     <!-- Dialog -->
     <div id="dialog-require-component" title="Add required component" style="display: none">
