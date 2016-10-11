@@ -141,15 +141,15 @@ if (!empty($data)) {
                 <div class="col-sm-3" >
                     <select id="branch" name="branch" class="form-control">
                         <option value="" selected disabled>-- select branch --</option>
-                         <?php
-                            foreach ($branches as $key => $value) {
-                                if ($value['id'] == $data[0]['branch_id']) {
-                                    echo "<option value='" . $value['id'] . "' selected>" . $value['location'] . "</option>";
-                                } else {
-                                    echo "<option value='" . $value['id'] . "'>" . $value['location'] . "</option>";
-                                }
+                        <?php
+                        foreach ($branches as $key => $value) {
+                            if ($value['id'] == $data[0]['branch_id']) {
+                                echo "<option value='" . $value['id'] . "' selected>" . $value['location'] . "</option>";
+                            } else {
+                                echo "<option value='" . $value['id'] . "'>" . $value['location'] . "</option>";
                             }
-                            ?>
+                        }
+                        ?>
                     </select> 
                 </div>
             </div>
@@ -215,9 +215,16 @@ if (!empty($data)) {
             padding: 0px;
         }
     </style>
+    <?php } else {?>
+    <div class="row">
+        <div class="col-md-5">
+            <img src="../resources/images/not_found.jpeg" class="img-responsive">
+        </div>
+        <div class=" col-md-offset-1 col-md-6">
+            <span  style="font-weight: bold; font-size: 28px; color: #FF0000;">OOPS!</span><br>
+            <p style="font-size: 28px;">This stored component is not found.</p>
+        </div>
+    </div>
     <?php
-} else {
-    echo '<p style="font-weight: bold; font-size: 24px;">This stored component is not found.</p>';
 }
 require_once '../layout/footer.php';
-?>

@@ -218,9 +218,18 @@ if (!empty($data)) {
         }
     </style>
 
+    <?php } else {?>
+    <div class="row">
+        <div class="col-md-5">
+            <img src="../resources/images/not_found.jpeg" class="img-responsive">
+        </div>
+        <div class=" col-md-offset-1 col-md-6">
+            <span  style="font-weight: bold; font-size: 28px; color: #FF0000;">OOPS!</span><br>
+            <p style="font-size: 28px;">This required component is not found.</p>
+        </div>
+    </div>
     <?php
-} else {
-    echo '<p style="font-weight: bold; font-size: 24px;">This required component is not found.</p>';
-}require_once '../layout/footer.php';
-?>
+}
+require_once '../layout/footer.php';
+
 

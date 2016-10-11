@@ -30,7 +30,6 @@ $(function () {
             position: position,
             role: role
         };
-        console.log(allFields);
         tips = $(".validTips");
     }
 
@@ -117,7 +116,7 @@ $(function () {
             data: allFields,
             success: function (data) {
                 console.log(data);
-                window.location.href = "http://localhost/EwestStore/str_admin/ma_user/index.php";
+                //window.location.href = "http://localhost/EwestStore/str_admin/ma_user/index.php";
             },
             error: function (data) {
                 console.log(data);
@@ -134,7 +133,7 @@ $(function () {
             data: allFields,
             success: function (data) {
                 console.log(data);
-                //location.reload();
+                location.reload();
             },
             error: function (data) {
                 console.log(data);
@@ -145,6 +144,8 @@ $(function () {
 //check validation then ADD new user
     $('#add_user').on('click', function () {
         getUserData();
+                console.log(allFields);
+
         if (checkUser()) {
             addUser();
         }

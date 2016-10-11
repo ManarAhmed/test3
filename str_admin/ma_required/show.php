@@ -20,6 +20,11 @@ $priorities = ['Very Low', 'Low', 'Medium', 'Heigh', 'Very Heigh'];
 require_once '../admin_layout/header.php';
 if (!empty($data)) {
     ?>
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-shopping-cart"></i> Required Component</h3>
+        </div>
+    </div>
     <section class="panel">
         <header class="panel-heading">
             <h3>Required component [<?php echo $data[0]['manu_part_num'] ?>]</h3>

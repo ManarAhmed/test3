@@ -3,7 +3,7 @@ session_start();
 if (isset($_SESSION['role']) && $_SESSION['role'] === "Administrator") {
     require_once '../../db/connection.php';
     $email = mysqli_real_escape_string($link, $_SESSION['email']);
-    $query = "SELECT * FROM user WHERE email = '$email'";
+    $query = "SELECT * FROM user WHERE id =".$_GET['id'];
     $result = mysqli_query($link, $query);
     $data = [];
     while ($row = mysqli_fetch_assoc($result)) {
@@ -15,6 +15,11 @@ $position = ['Engineer', 'Team Leader', 'Manager'];
 $role = ['Administrator', 'User'];
 require_once '../admin_layout/header.php';
 ?>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-users"></i> Users</h3>
+    </div>
+</div>
 <section class="panel">
     <header class="panel-heading">
         <h3>Update user Profile</h3>

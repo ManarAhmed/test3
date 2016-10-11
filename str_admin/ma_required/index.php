@@ -20,6 +20,11 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "Administrator") {
 $priorities = ['Very Low', 'Low', 'Medium', 'Heigh', 'Very Heigh'];
 require_once '../admin_layout/header.php';
 ?>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-shopping-cart"></i> Required Component</h3>
+    </div>
+</div>
 <section class="panel">
     <header class="panel-heading">
         <h3>Required components</h3>

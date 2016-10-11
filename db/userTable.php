@@ -13,7 +13,7 @@ if (isset($_REQUEST['add_user']) || isset($_REQUEST['update_user'])) {
     $role = mysqli_real_escape_string($link, $_REQUEST['role']);
    
     if (isset($_REQUEST['add_user'])) {
-        $query = "INSERT INTO user(name, user_name, email, password, gender, position, role) VALUES ('$name','$user_name','$email','$password', '$gender',$position', '$role')";
+        $query = "INSERT INTO user(name, user_name, email, password, gender, position, role) VALUES ('$name','$user_name','$email','$password', '$gender','$position', '$role')";
     } elseif (isset($_REQUEST['update_user'])) {
         $id = mysqli_real_escape_string($link, $_REQUEST['id']);
         $query = "UPDATE user SET name = '$name', user_name ='$user_name', email = '$email', password = '$password', gender = '$gender', position = '$position', role = '$role' WHERE id = $id";

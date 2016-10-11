@@ -83,30 +83,38 @@ if (!empty($data)) {
     <div id="dialog-confirm" title="Delete Stored component?" style="display: none">
         <p style="font-size: 16px; "><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>These item will be permanently deleted and cannot be recovered.<br><h4>Are you sure?</h4></p>
     </div>
-    
+
     <!-- Dialog -->
     <div id="dialog-require-component" title="Add required component" style="display: none">
         <p style="font-size: 16px; "></p>
         <form>
-                <label for="added_quantity">Quantity needed</label>
+            <label for="added_quantity">Quantity needed</label>
             <input type="number" min="1" step="1" id="require_quantity" name="require_quantity">
             <br><br>
-                <label for="priority">Priority</label>
-                <select id="priority" name="priority" style="margin-left: 53px;">
-                    <option value="" selected disabled>-- select priority --</option>
-                    <option value="5">Very Heigh</option>
-                    <option value="4">Heigh</option>
-                    <option value="3">Medium</option>
-                    <option value="2">Low</option>
-                    <option value="1">Very Low</option>
-                </select> 
-            
-            
+            <label for="priority">Priority</label>
+            <select id="priority" name="priority" style="margin-left: 53px;">
+                <option value="" selected disabled>-- select priority --</option>
+                <option value="5">Very Heigh</option>
+                <option value="4">Heigh</option>
+                <option value="3">Medium</option>
+                <option value="2">Low</option>
+                <option value="1">Very Low</option>
+            </select> 
+
+
         </form>
     </div>
+<?php } else { ?>
+    <div class="row">
+        <div class="col-md-5">
+            <img src="../resources/images/not_found.jpeg" class="img-responsive">
+        </div>
+        <div class=" col-md-offset-1 col-md-6">
+            <span  style="font-weight: bold; font-size: 28px; color: #FF0000;">OOPS!</span><br>
+            <p style="font-size: 28px;">This stored component is not found.</p>
+        </div>
+    </div>
+
     <?php
-} else {
-    echo '<p style="font-weight: bold; font-size: 24px;">This stored component is not found.</p>';
 }
 require_once '../layout/footer.php';
-?>

@@ -1,9 +1,9 @@
 </div>
 </div>
+
 </section>
 </section>
 
-</section>
 <!-- container section start -->
 <!-- javascripts -->
 <script src="/<?php echo substr(__DIR__, '-33', '-23') . '/vendor/admin/js/jquery.js' ?>"></script>
@@ -23,7 +23,5 @@
 <script src="/<?php echo substr(__DIR__, '-33', '-23') . '/resources/js/required.js' ?>"></script>
 <script src="/<?php echo substr(__DIR__, '-33', '-23') . '/resources/js/store.js' ?>"></script>
 <script src="/<?php echo substr(__DIR__, '-33', '-23') . '/resources/js/user.js' ?>"></script>
-
-
 </body>
 </html>

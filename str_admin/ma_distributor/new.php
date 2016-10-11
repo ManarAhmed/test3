@@ -8,9 +8,14 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === "Administrator") {
     exit();
 }
 ?>
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header"><i class="fa fa-sitemap"></i> Distribtors</h3>
+    </div>
+</div>
 <section class="panel">
     <header class="panel-heading">
-        <h3>>Add distributor</h3>
+        <h3>Add distributor</h3>
 
     </header>
     <div class="panel-body">
